@@ -1,0 +1,53 @@
+﻿@{
+    ViewData["Title"] = "Trang chính";
+}
+<div class="d-flex flex-column px-2">
+    <div class="row gx-5 gy-2 mb-4">
+        <div class="d-flex flex-column col-5">
+            <label for="school-id" class="text-nowrap mb-1">Mã trường</label>
+            <input type="text" class="form-control" id="school-id">
+        </div>
+        <div class="d-flex flex-column col-3">
+            <label for="start-date-input" class="text-nowrap mb-1">Từ ngày</label>
+            <input type="date" class="form-control" id="start-date-input" placeholder="dd-mm-yyyy">
+        </div>
+        <div class="d-flex flex-column col-3">
+            <label for="end-date-input" class="text-nowrap mb-1">Đến ngày</label>
+            <input type="date" class="form-control" id="end-date-input" placeholder="dd-mm-yyyy">
+        </div>
+        <div class="d-flex col align-self-end gap-2">
+            <button type="button" class="btn btn-primary" id="search-btn" style="min-width:max-content">
+                <i class="bi bi-search"></i>
+                Tìm kiếm
+            </button>
+            <button type="button" class="btn btn-success" id="export-excel-btn" style="min-width:max-content">
+                <i class="bi bi-arrow-down-circle-fill"></i>
+                Xuất Excel
+            </button>
+            <button type="button" class="btn btn-success" id="export-xml-btn" style="min-width:max-content">
+                <i class="bi bi-arrow-down-circle-fill"></i>
+                Xuất Xml
+            </button>
+        </div>
+    </div>
+
+    <div class="text-center visually-hidden" id="loading">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <table class="table table-hover table-bordered visually-hidden" id="report-table">
+        <thead>
+            <tr>
+                <th scope="col">Ngày</th>
+                <th scope="col">Tiền ăn sáng</th>
+                <th scope="col">Tiền ăn trưa</th>
+                <th scope="col">Tiền ăn chiều</th>
+                <th scope="col">Phụ phí</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+</div>
