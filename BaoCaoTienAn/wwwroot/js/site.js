@@ -76,4 +76,13 @@
             ExportToXml(schoolId, startDate, endDate)
         }
     })
+
+    $('#print-report-btn').on('click', () => {
+        const schoolId = $('#school-id').val().trim()
+        const startDate = $('#start-date-input').val().trim()
+        const endDate = $('#end-date-input').val().trim()
+        if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
+            window.open(`/Print/MealMoneyReport/?schoolId=${schoolId}&startDate=${startDate}&endDate=${endDate}`, '_blank')
+        }
+    })
 })

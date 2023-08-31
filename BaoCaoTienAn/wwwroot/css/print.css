@@ -1,0 +1,19 @@
+﻿body {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title{
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+}

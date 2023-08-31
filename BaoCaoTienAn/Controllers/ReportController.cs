@@ -1,7 +1,5 @@
 ﻿using DataAccess.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Security;
 
 namespace BaoCaoTienAn.Controllers
 {
@@ -50,7 +48,7 @@ namespace BaoCaoTienAn.Controllers
                 var stream = await _unitOfWork.Report.ExportToXml(schoolId, startDate, endDate);
                 return File(stream, "application/xml", "Báo cáo tiền ăn ngày " + startDate + " đến " + endDate + ".xml");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }
