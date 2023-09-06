@@ -1,6 +1,7 @@
 ﻿@using DataAccess.Models;
 @using System.Globalization;
 @model IEnumerable<SchoolRecord>
+
 @{
     Layout = "_PrintLayout";
 }
@@ -19,7 +20,7 @@
     <tbody>
         @foreach (var report in Model)
         {
-            <tr >
+            <tr>
                 <td style="text-align:center;">@report.Date.ToString("dd/MM/yyyy")</td>
                 <td style="text-align:right;">@report.TienAnSang.ToString("N0", new CultureInfo("vi-VN"))</td>
                 <td style="text-align:right;">@report.TienAnTrua.ToString("N0", new CultureInfo("vi-VN"))</td>
