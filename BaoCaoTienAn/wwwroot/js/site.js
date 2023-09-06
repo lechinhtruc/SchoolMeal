@@ -9,7 +9,7 @@
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
-        var formattedDate = day + '-' + month + '-' + year;
+        var formattedDate = day + '/' + month + '/' + year;
         return formattedDate;
     }
 
