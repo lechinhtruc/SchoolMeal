@@ -17,3 +17,9 @@
     width: 100%;
     border-collapse: collapse;
 }
+
+@media print {
+    @page {
+        margin: 0;
+    }
+}
