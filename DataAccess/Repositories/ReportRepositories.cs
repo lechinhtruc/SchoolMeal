@@ -51,12 +51,8 @@ namespace DataAccess.Repositories
                 .ToListAsync();
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<SchoolRecord>));
             var xmlStream = new MemoryStream();
-
-            using (var writer = new StreamWriter(xmlStream, System.Text.Encoding.UTF8, 1024, true))
-            {
-                serializer.Serialize(writer, reports);
-            }
-
+            var writer = new StreamWriter(xmlStream, System.Text.Encoding.UTF8, 1024, true);
+            serializer.Serialize(writer, reports);
             xmlStream.Seek(0, SeekOrigin.Begin);
             return xmlStream;
         }
