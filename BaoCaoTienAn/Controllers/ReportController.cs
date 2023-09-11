@@ -20,9 +20,9 @@ namespace BaoCaoTienAn.Controllers
             {
                 return Ok(await _unitOfWork.Report.ReportMealMoney(schoolId, startDate, endDate));
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
@@ -34,9 +34,9 @@ namespace BaoCaoTienAn.Controllers
                 var stream = await _unitOfWork.Report.ExportToExcel(schoolId, startDate, endDate);
                 return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Báo cáo tiền ăn ngày " + startDate + " đến " + endDate + ".xlsx");
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
