@@ -19,7 +19,7 @@ builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationSc
     .AddCookie((option) =>
     {
         option.LoginPath = "/Auth/DangNhap";
-       // option.Cookie.Name = "SchoolMeal.Session";
+        option.Cookie.Name = "SchoolMeal.Session";
     });
 
 var app = builder.Build();

@@ -1,1 +1,9 @@
+/*
+.bi-caret-down-fill {
+    transition: 0.3s all;
+}
 
+.collapsed .bi-caret-down-fill {
+    transform: rotate(-90deg);
+}
+*/

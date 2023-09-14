@@ -13,14 +13,14 @@
 </head>
 <body class="overflow-hidden bg-body-secondary vh-100 vw-100">
     <div class="d-flex p-3 h-100 w-100">
-        <div class="d-flex flex-column bg-white h-100 rounded shadow-sm me-3" style="min-width:250px;">
+        <div class="d-flex flex-column bg-white h-100 rounded shadow-sm me-2" style="min-width:250px;">
             <div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
                     <img src="/resources/logo1.png" alt="Logo" width="110" height="60" />
                 </a>
             </div>
             <div class="d-flex flex-column p-2 mt-1 h-100">
-                <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0" data-bs-toggle="collapse" data-bs-target="#collapseAccount">
+                <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseAccount">
                     <i class="bi bi-person-vcard-fill me-1"></i>
                     <span class="fw-bold w-100 text-start">Tài khoản</span>
                     <i class="bi bi-caret-down-fill" style="font-size:10px;"></i>
@@ -28,19 +28,19 @@
 
                 <div class="collapse @(ViewContext.RouteData.Values["controller"]!.ToString() == "Account" ? "show" : "") ms-4" id="collapseAccount"
                      style="font-size:13px;">
-                    <a class="btn @(ViewContext.RouteData.Values["action"]!.ToString() == "ThongTin" ? "bg-danger text-light":"") rounded-pill d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                    <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "ThongTin" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
                        asp-controller="Account"
                        asp-action="ThongTin">
                         <i class="bi bi-dot"></i>
                         <span class="fw-bold">Thông tin tài khoản</span>
                     </a>
-                    <a class="btn @(ViewContext.RouteData.Values["action"]!.ToString() == "DoiMatKhau" ? "bg-danger text-light":"") rounded-pill d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                    <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "DoiMatKhau" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
                        asp-controller="Account"
                        asp-action="DoiMatKhau">
                         <i class="bi bi-dot"></i>
                         <span class="fw-bold">Đổi mật khẩu</span>
                     </a>
-                    <a class="btn rounded-pill d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                    <a class="btn shadow-none rounded-pill d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
                        asp-controller="Account"
                        asp-action="Logout">
                         <i class="bi bi-dot"></i>
@@ -48,14 +48,14 @@
                     </a>
                 </div>
 
-                <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0" data-bs-toggle="collapse" data-bs-target="#NurturingManagementReport">
+                <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#NurturingManagementReport">
                     <i class="bi bi-currency-dollar me-1"></i>
                     <span class="fw-bold w-100 text-start">Quản lý thu chi</span>
                     <i class="bi bi-caret-down-fill" style="font-size:10px;"></i>
                 </span>
 
                 <div class="collapse @(ViewContext.RouteData.Values["controller"]!.ToString() == "NurturingManagementReport" ? "show" : "") ms-4" id="NurturingManagementReport">
-                    <a class="btn @(ViewContext.RouteData.Values["action"]!.ToString() == "TienAn" ? "bg-danger text-light":"") rounded-pill d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                    <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TienAn" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
                        asp-controller="NurturingManagementReport"
                        asp-action="TienAn">
                         <i class="bi bi-dot"></i>
@@ -72,49 +72,14 @@
                     <b class="fs-4">@ViewData["Title"]</b>
                     <small class="opacity-75">@ViewData["Description"]</small>
                 </span>
-                <div class="d-flex gap-1">
-                    <div class="dropdown" id="notify-drop-down">
-                        <button class="btn btn-secondary bg-body-secondary border-0 d-flex align-items-center justify-content-center rounded-circle text-center position-relative" id="btn-notify" style="width:40px;height:40px;" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-bell-fill text-dark"></i>
-                            <span class="position-absolute top-0 mt-1 translate-middle p-1 bg-primary border border-light border-2 rounded-circle visually-hidden" id="badge-notify" style="right:-5px;">
-                                <span class="visually-hidden">Thông báo mới</span>
-                            </span>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end mt-3 me-2 user-select-none overflow-auto" style="width:350px;max-height:500px;" id="notification-menu">
-                            <h4 class="px-3">Thông báo</h4>
-                            <p class="px-3 text-black-50" style="font-size:13.5px;" id="no-notify-msg">Không có thông báo nào</p>
-                            <div id="notify-list"></div>
-                        </div>
-                    </div>
-
-                    <div class="dropdown">
-                        <button class="btn btn-secondary bg-body-secondary border-0 d-flex align-items-center justify-content-center rounded-circle text-center position-relative" style="width:40px;height:40px;" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-person-fill text-dark fs-5"></i>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end mt-3 me-2 user-select-none overflow-auto" style="width:250px;max-height:500px;">
-                            <a class="d-flex align-items-center w-100 px-2 text-black dropdown-item gap-2" style="cursor:pointer;" asp-action="ThongTin" asp-controller="Account">
-                                <i class="bi bi-person-vcard-fill"></i>
-                                <span>Thông tin tài khoản</span>
-                            </a>
-                            <a class="d-flex align-items-center w-100 px-2 text-black dropdown-item gap-2" style="cursor:pointer;" asp-action="DoiMatKhau" asp-controller="Account">
-                                <i class="bi bi-key-fill fs-6"></i>
-                                <span>Đổi mật khẩu</span>
-                            </a>
-                            <hr class="dropdown-divider opacity-25" />
-                            <a class="d-flex align-items-center w-100 px-2 text-black dropdown-item gap-2" style="cursor:pointer;" asp-action="Logout" asp-controller="Account">
-                                <i class="bi bi-box-arrow-right fs-6"></i>
-                                <span>Đăng xuất</span>
-                            </a>
-                        </div>
-                    </div>
+                <div class="d-flex gap-1 align-items-center">
+                    <partial name="_NotificationDropDownPartial" />
+                    <hr style="width:1px;height:20px;"/>
+                    <partial name="_UserDropDownPartial" />
                 </div>
             </div>
             <div class="d-flex rounded shadow-sm bg-white mt-2 w-100 h-100 position-relative">
-                <div class="w-100 h-100 visually-hidden text-center position-absolute bg-dark-subtle opacity-25 d-flex align-items-center justify-content-center z-3" id="loading">
-                    <div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                    </div>
-                </div>
+                <partial name="_LoadingPartial" />
                 @RenderBody()
             </div>
         </div>
