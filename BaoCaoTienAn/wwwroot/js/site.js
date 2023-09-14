@@ -34,11 +34,14 @@
                 $('#loading').removeClass('visually-hidden')
             },
             complete: () => {
-                $('#loading').addClass('visually-hidden')
+                setTimeout(() => {
+                    $('#loading').addClass('visually-hidden')
+                }, 1000)
             },
             success: (data) => {
-                $('#report-table').removeClass('visually-hidden')
-                bindDataTable(data)
+                data.length > 0 ? bindDataTable(data) &
+                    $('#null-text').addClass("visually-hidden") :
+                    $('#null-text').removeClass('visually-hidden');
             }
         })
     }
@@ -82,7 +85,7 @@
         const startDate = $('#start-date-input').val().trim()
         const endDate = $('#end-date-input').val().trim()
         if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
-            window.open(`/Print/MealMoneyReport/?schoolId=${schoolId}&startDate=${startDate}&endDate=${endDate}`, '_blank')
+            window.open(`/NurturingManagementReport/PrintMealMoney/?schoolId=${schoolId}&startDate=${startDate}&endDate=${endDate}`, '_blank')
         }
     })
 })

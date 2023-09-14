@@ -1,0 +1,26 @@
+﻿@using System.Security.Claims;
+
+@model DataAccess.Models.AccountModel;
+
+@{
+    ViewData["Title"] = "Đổi mật khẩu";
+    ViewData["Description"] = "Đổi mật khẩu cho tài khoản " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
+}
+<div class="d-flex flex-column w-100 align-items-center justify-content-center">
+    <h4 class="mb-3">Thay đổi mật khẩu</h4>
+    <form class="d-flex flex-column gap-2" style="width:500px;" method="post" asp-action="ChangePassword" asp-controller="Account">
+        <div class="form-floating">
+            <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" asp-for="Password">
+            <label for="oldPassword">Mật khẩu cũ</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="newPassword" placeholder="New Password" asp-for="Password">
+            <label for="newPassword">Mật khẩu mới</label>
+        </div>
+        <div class="form-floating w-100">
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
+            <label for="confirmPassword">Nhập lại mật khẩu mới</label>
+        </div>
+        <button type="submit" class="btn btn-success mt-3">Đổi mật khẩu</button>
+    </form>
+</div>
