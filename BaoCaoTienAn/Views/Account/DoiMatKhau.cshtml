@@ -7,11 +7,11 @@
     ViewData["Description"] = "Đổi mật khẩu cho tài khoản " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
 }
 <div class="d-flex flex-column w-100 align-items-center justify-content-center">
-    <div class="d-flex flex-column align-items-center me-5 mb-3">
+    <div class="d-flex flex-column align-items-center mb-3">
         <div class="d-flex align-items-center justify-content-center rounded-pill border" style="width:80px;height:80px;">
             <i class="bi bi-key-fill fs-1"></i>
         </div>
-        <h4 class="my-3">Thay đổi mật khẩu</h4>
+        <span class="fw-bold text-uppercase my-3 fs-5">Thay đổi mật khẩu</span>
     </div>
     <form class="d-flex flex-column gap-2" style="width:500px;" method="post" asp-action="ChangePassword" asp-controller="Account">
         <div class="form-floating">

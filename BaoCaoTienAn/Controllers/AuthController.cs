@@ -1,11 +1,8 @@
 ﻿using DataAccess.Interfaces;
-using DocumentFormat.OpenXml.Math;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using System.Security.Principal;
 
 namespace BaoCaoTienAn.Controllers
 {
@@ -41,6 +38,7 @@ namespace BaoCaoTienAn.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
                     return RedirectToAction("Index", "Home");
                 }
+                ModelState.AddModelError("Password", "Thông tin đăng nhập không chính xác");
                 return View("DangNhap");
             }
             return View("DangNhap");
