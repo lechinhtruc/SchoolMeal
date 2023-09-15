@@ -12,10 +12,10 @@ namespace DataAccess.Models
         [Key]
         public int Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập tài khoản!")]
         public string? Username { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Hãy nhập mật khẩu!")]
         public string? Password { get; set; }
     }
 }

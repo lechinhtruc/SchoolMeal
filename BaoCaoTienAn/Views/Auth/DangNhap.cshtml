@@ -1,5 +1,6 @@
 ﻿@{
     Layout = "_AuthLayout";
+    ViewData["Title"] = "Đăng nhập vào hệ thống";
 }
 @model DataAccess.Models.AccountModel;
 
@@ -8,13 +9,15 @@
         <img src="/resources/logo1.png" alt="Logo" width="170" height="70" />
     </a>
     <h4 class="mb-4"><b>Đăng nhập vào hệ thống</b></h4>
-    <div class="form-floating mb-3 w-100">
+    <div class="form-floating w-100 mb-3">
         <input type="text" class="form-control" id="floatingInput" placeholder="demo" asp-for="Username">
         <label for="floatingInput">Tài khoản</label>
+        <span asp-validation-for="Username" class="text-danger"></span>
     </div>
     <div class="form-floating w-100">
         <input type="password" class="form-control" id="floatingPassword" placeholder="Password" asp-for="Password">
         <label for="floatingPassword">Mật khẩu</label>
+        <span asp-validation-for="Password" class="text-danger"></span>
     </div>
     <button type="submit" class="btn btn-success mt-4 fw-bold w-25">Đăng nhập</button>
 </form>
