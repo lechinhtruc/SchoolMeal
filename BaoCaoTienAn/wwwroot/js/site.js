@@ -9,7 +9,7 @@
         var day = date.getDate();
         var month = date.getMonth() + 1;
         var year = date.getFullYear();
-        var formattedDate = day + '-' + month + '-' + year;
+        var formattedDate = day + '/' + month + '/' + year;
         return formattedDate;
     }
 
@@ -34,11 +34,14 @@
                 $('#loading').removeClass('visually-hidden')
             },
             complete: () => {
-                $('#loading').addClass('visually-hidden')
+                setTimeout(() => {
+                    $('#loading').addClass('visually-hidden')
+                }, 1000)
             },
             success: (data) => {
-                $('#report-table').removeClass('visually-hidden')
-                bindDataTable(data)
+                data.length > 0 ? bindDataTable(data) &
+                    $('#null-text').addClass("visually-hidden") :
+                    $('#null-text').removeClass('visually-hidden');
             }
         })
     }
@@ -74,6 +77,15 @@
         const endDate = $('#end-date-input').val().trim()
         if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
             ExportToXml(schoolId, startDate, endDate)
+        }
+    })
+
+    $('#print-report-btn').on('click', () => {
+        const schoolId = $('#school-id').val().trim()
+        const startDate = $('#start-date-input').val().trim()
+        const endDate = $('#end-date-input').val().trim()
+        if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
+            window.open(`/NurturingManagementReport/PrintMealMoney/?schoolId=${schoolId}&startDate=${startDate}&endDate=${endDate}`, '_blank')
         }
     })
 })

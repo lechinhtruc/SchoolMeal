@@ -2,6 +2,7 @@ using DataAccess.Data;
 using DataAccess.Interfaces;
 using DataAccess.Repositories;
 using DataAccess.UnitOfWork;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,10 +10,17 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IReportRepositories, ReportRepositories>();
+builder.Services.AddScoped<IAuthRepositories, AuthRepositories>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DbConnection")
 ));
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie((option) =>
+    {
+        option.LoginPath = "/Auth/DangNhap";
+        option.Cookie.Name = "SchoolMeal.Session";
+    });
 
 var app = builder.Build();
 
@@ -24,11 +32,14 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

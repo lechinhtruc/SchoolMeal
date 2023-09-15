@@ -1,0 +1,32 @@
+﻿@using DataAccess.Models;
+@using System.Globalization;
+@model IEnumerable<SchoolRecord>
+
+@{
+    Layout = "_PrintLayout";
+}
+
+<h2 class="title">Báo cáo tiền ăn</h2>
+<table border="1" class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width: 12%;">Ngày</th>
+            <th>Tiền ăn sáng</th>
+            <th>Tiền ăn trưa</th>
+            <th>Tiền ăn chiều</th>
+            <th>Phụ phí</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var report in Model)
+        {
+            <tr>
+                <td style="text-align:center;">@report.Date.ToString("dd/MM/yyyy")</td>
+                <td style="text-align:right;">@report.TienAnSang.ToString("N0", new CultureInfo("vi-VN"))</td>
+                <td style="text-align:right;">@report.TienAnTrua.ToString("N0", new CultureInfo("vi-VN"))</td>
+                <td style="text-align:right;">@report.TienAnChieu.ToString("N0", new CultureInfo("vi-VN"))</td>
+                <td style="text-align:right;">@report.PhuPhi.ToString("N0", new CultureInfo("vi-VN"))</td>
+            </tr>
+        }
+    </tbody>
+</table>

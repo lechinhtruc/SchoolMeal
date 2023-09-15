@@ -1,18 +1,9 @@
-html {
-  font-size: 14px;
+/*
+.bi-caret-down-fill {
+    transition: 0.3s all;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+.collapsed .bi-caret-down-fill {
+    transform: rotate(-90deg);
 }
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
-body {
-  margin-bottom: 60px;
-}
+*/

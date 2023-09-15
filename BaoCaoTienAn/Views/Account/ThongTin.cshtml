@@ -1,0 +1,55 @@
+﻿@using System.Security.Claims;
+
+@{
+    ViewData["Title"] = "Thông tin";
+    ViewData["Description"] = "Thông tin chi tiết của tài khoản " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
+}
+
+<div class="d-flex flex-column px-5 w-100 justify-content-center">
+    <div class="d-flex flex-column w-100">
+        <div class="d-flex flex-column align-items-center me-5 mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-pill border" style="min-width:80px;min-height:80px;">
+                <i class="bi bi-person-fill fs-1"></i>
+            </div>
+            <span class="fw-bold text-uppercase my-3 fs-5">Thông tin chi tiết</span>
+        </div>
+
+        <div class="d-flex flex-column w-100 gap-3">
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
+                <div class="form-floating">
+                    <input type="text" disabled class="form-control" id="upsername" value="@User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value">
+                    <label for="username">Tên tài khoản</label>
+                </div>
+                <button class="btn btn-secondary input-group-text"><i class="bi bi-clipboard"></i></button>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-phone-fill"></i></span>
+                <div class="form-floating">
+                    <input type="tel" disabled class="form-control" id="date" value="0123456789">
+                    <label for="telphone">Số điện thoại</label>
+                </div>
+                <button class="btn btn-secondary input-group-text"><i class="bi bi-clipboard"></i></button>
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
+                <div class="form-floating">
+                    <input type="text" disabled class="form-control" id="createDate" value="14/09/2023">
+                    <label for="createDate">Ngày tạo</label>
+                </div>
+                <button class="btn btn-secondary input-group-text"><i class="bi bi-clipboard"></i></button>
+
+            </div>
+            <div class="input-group">
+                <span class="input-group-text"><i class="bi bi-calendar-x"></i></span>
+                <div class="form-floating">
+                    <input type="text" disabled class="form-control" id="expiryDate" value="14/09/2023">
+                    <label for="expiryDate">Ngày hết hạn</label>
+                </div>
+                <button class="btn btn-secondary input-group-text"><i class="bi bi-calendar-plus"></i></button>
+
+            </div>
+        </div>
+
+    </div>
+</div>

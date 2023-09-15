@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_AuthLayout";
+}
+@model DataAccess.Models.AccountModel;
+
+<form class="d-flex flex-column rounded bg-white shadow-sm align-items-center px-3 py-4" style="width:500px;" asp-action="Login" asp-controller="Auth" method="post">
+    <a class="navbar-brand mb-3" asp-area="" asp-controller="Home" asp-action="Index">
+        <img src="/resources/logo1.png" alt="Logo" width="170" height="70" />
+    </a>
+    <h4 class="mb-4"><b>Đăng nhập vào hệ thống</b></h4>
+    <div class="form-floating mb-3 w-100">
+        <input type="text" class="form-control" id="floatingInput" placeholder="demo" asp-for="Username">
+        <label for="floatingInput">Tài khoản</label>
+    </div>
+    <div class="form-floating w-100">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Password" asp-for="Password">
+        <label for="floatingPassword">Mật khẩu</label>
+    </div>
+    <button type="submit" class="btn btn-success mt-4 fw-bold w-25">Đăng nhập</button>
+</form>

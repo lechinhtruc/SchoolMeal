@@ -1,7 +1,5 @@
 ﻿using DataAccess.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Security;
 
 namespace BaoCaoTienAn.Controllers
 {
@@ -22,9 +20,9 @@ namespace BaoCaoTienAn.Controllers
             {
                 return Ok(await _unitOfWork.Report.ReportMealMoney(schoolId, startDate, endDate));
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
@@ -36,9 +34,9 @@ namespace BaoCaoTienAn.Controllers
                 var stream = await _unitOfWork.Report.ExportToExcel(schoolId, startDate, endDate);
                 return File(stream.ToArray(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", "Báo cáo tiền ăn ngày " + startDate + " đến " + endDate + ".xlsx");
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
@@ -50,7 +48,7 @@ namespace BaoCaoTienAn.Controllers
                 var stream = await _unitOfWork.Report.ExportToXml(schoolId, startDate, endDate);
                 return File(stream, "application/xml", "Báo cáo tiền ăn ngày " + startDate + " đến " + endDate + ".xml");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex);
             }

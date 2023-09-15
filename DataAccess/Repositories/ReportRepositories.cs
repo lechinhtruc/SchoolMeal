@@ -16,20 +16,19 @@ namespace DataAccess.Repositories
         }
         public async Task<MemoryStream> ExportToExcel(Guid schoolId, DateTime startDate, DateTime endDate)
         {
-            int row = 2;
-            XLWorkbook workbook = new();
+            int row = 4;
+
+            //Load template file
+            XLWorkbook workbook = new(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Templates", "tml.xlsx"));
             MemoryStream stream = new();
-            var worksheet = workbook.AddWorksheet();
+            var worksheet = workbook.Worksheet(1);
+
+            //Get data from db
             var reports = await _db.Tbl_mealmoney
             .Where(r => r.SchoolId == schoolId && r.Date >= startDate && r.Date <= endDate).OrderBy(x => x.Date)
             .ToListAsync();
 
-            worksheet.Cell("A1").Value = "Ngày";
-            worksheet.Cell("B1").Value = "Tiền Ăn Sáng";
-            worksheet.Cell("C1").Value = "Tiền Ăn Trưa";
-            worksheet.Cell("D1").Value = "Tiền Ăn Chiều";
-            worksheet.Cell("E1").Value = "Phụ Phí";
-
+            //Insert data
             foreach (var report in reports)
             {
                 worksheet.Cell(row, 1).Value = report.Date.ToString("dd-MM-yyyy");
@@ -40,6 +39,17 @@ namespace DataAccess.Repositories
                 row++;
             }
 
+            //Set styles
+            worksheet.Range($"A4:E{row - 1}").Style
+                .Border.SetTopBorder(XLBorderStyleValues.Thin)
+                .Border.SetRightBorder(XLBorderStyleValues.Thin)
+                .Border.SetBottomBorder(XLBorderStyleValues.Thin)
+                .Border.SetLeftBorder(XLBorderStyleValues.Thin)
+                .Font.SetFontName("Times New Roman")
+                .Font.SetFontSize(14);
+
+            //Autofit column
+            worksheet.Columns().AdjustToContents();
             workbook.SaveAs(stream);
             return stream;
         }
@@ -51,12 +61,8 @@ namespace DataAccess.Repositories
                 .ToListAsync();
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<SchoolRecord>));
             var xmlStream = new MemoryStream();
-
-            using (var writer = new StreamWriter(xmlStream, System.Text.Encoding.UTF8, 1024, true))
-            {
-                serializer.Serialize(writer, reports);
-            }
-
+            var writer = new StreamWriter(xmlStream, System.Text.Encoding.UTF8, 1024, true);
+            serializer.Serialize(writer, reports);
             xmlStream.Seek(0, SeekOrigin.Begin);
             return xmlStream;
         }
