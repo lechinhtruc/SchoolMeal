@@ -1,6 +1,6 @@
 ﻿@using System.Security.Claims;
 
-@model DataAccess.Models.AccountModel;
+@model DataAccess.ViewModels.ChangePasswordViewModel;
 
 @{
     ViewData["Title"] = "Đổi mật khẩu";
@@ -15,16 +15,21 @@
     </div>
     <form class="d-flex flex-column gap-2" style="width:500px;" method="post" asp-action="ChangePassword" asp-controller="Account">
         <div class="form-floating">
-            <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" asp-for="Password">
+            <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" asp-for="OldPassword">
             <label for="oldPassword">Mật khẩu cũ</label>
+            <span asp-validation-for="OldPassword" class="text-danger"></span>
         </div>
         <div class="form-floating">
-            <input type="password" class="form-control" id="newPassword" placeholder="New Password" asp-for="Password">
+            <input type="password" class="form-control" id="newPassword" placeholder="New Password" asp-for="NewPassword">
             <label for="newPassword">Mật khẩu mới</label>
+            <span asp-validation-for="NewPassword" class="text-danger"></span>
+
         </div>
         <div class="form-floating w-100">
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password">
+            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" asp-for="ConfirmPassword">
             <label for="confirmPassword">Nhập lại mật khẩu mới</label>
+            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
         </div>
         <button type="submit" class="btn btn-success mt-3">Đổi mật khẩu</button>
     </form>

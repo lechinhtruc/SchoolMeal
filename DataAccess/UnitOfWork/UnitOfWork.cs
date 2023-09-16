@@ -11,11 +11,14 @@ namespace DataAccess.UnitOfWork
 
         public IAuthRepositories Auth { get; }
 
-        public UnitOfWork(ApplicationDbContext db, IReportRepositories report, IAuthRepositories auth)
+        public IAccountRepositories Account { get; }
+
+        public UnitOfWork(ApplicationDbContext db, IReportRepositories report, IAuthRepositories auth, IAccountRepositories account)
         {
             _db = db;
             Report = report;
             Auth = auth;
+            Account = account;
         }
     }
 }
