@@ -26,7 +26,7 @@ namespace BaoCaoTienAn.Controllers
             if (ModelState.IsValid)
             {
                 var user = await _unitOfWork.Auth.Login(Username, Password);
-                if (user != null)
+                if (user.Id != 0)
                 {
                     var claims = new List<Claim>
                     {
@@ -38,7 +38,7 @@ namespace BaoCaoTienAn.Controllers
                     await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
                     return RedirectToAction("Index", "Home");
                 }
-                ModelState.AddModelError("Password", "Thông tin đăng nhập không chính xác");
+                ModelState.AddModelError(nameof(user.Password), "Thông tin đăng nhập không chính xác");
                 return View("DangNhap");
             }
             return View("DangNhap");

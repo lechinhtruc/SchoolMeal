@@ -20,7 +20,7 @@ namespace DataAccess.Repositories
         public async Task<AccountModel> Login(string Username, string Password)
         {
             var user = await _db.Tbl_account.FirstOrDefaultAsync(x => x.Username == Username && x.Password == Password);
-            return user;
+            return user ?? new AccountModel();
         }
     }
 }
