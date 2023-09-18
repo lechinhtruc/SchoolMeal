@@ -11,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IReportRepositories, ReportRepositories>();
 builder.Services.AddScoped<IAuthRepositories, AuthRepositories>();
+builder.Services.AddScoped<IAccountRepositories, AccountRepositories>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DbConnection")
