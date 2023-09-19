@@ -18,6 +18,5 @@ namespace DataAccess.Repositories
             var user = await _db.Tbl_account.FirstOrDefaultAsync(x => x.Username == Username && x.Password == Password);
             return user ?? new AccountModel();
         }
-
     }
 }

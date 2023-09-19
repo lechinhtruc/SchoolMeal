@@ -27,6 +27,5 @@ namespace DataAccess.Repositories
                 return false;
             }
         }
-
     }
 }
