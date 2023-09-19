@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DataAccess.ViewModels
+namespace BaoCaoTienAn.ViewModels
 {
     public class ChangePasswordViewModel
     {
