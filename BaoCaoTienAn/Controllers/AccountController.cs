@@ -9,7 +9,6 @@ namespace BaoCaoTienAn.Controllers
     [Authorize]
     public class AccountController : BaseController
     {
-
         private readonly IUnitOfWork _unitOfWork;
         public AccountController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
@@ -39,6 +38,7 @@ namespace BaoCaoTienAn.Controllers
             return View();
         }
 
+        [Route("{controller}/DoiMatKhau")]
         [HttpPost]
         public async Task<IActionResult> ChangePassword(string OldPassword, string NewPassword)
         {
