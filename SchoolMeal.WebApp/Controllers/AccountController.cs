@@ -39,6 +39,7 @@ namespace BaoCaoTienAn.Controllers
         }
 
         [Route("{controller}/DoiMatKhau")]
+        [ActionName("DoiMatKhau")]
         [HttpPost]
         public async Task<IActionResult> ChangePassword(string OldPassword, string NewPassword)
         {
