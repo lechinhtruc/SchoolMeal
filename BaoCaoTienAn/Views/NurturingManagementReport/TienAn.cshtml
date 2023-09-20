@@ -1,57 +1,90 @@
-﻿@{
+﻿@using BaoCaoTienAn.ViewModels;
+@using DataAccess.Models;
+@using System.Globalization;
+@{
     ViewData["Title"] = "Báo cáo tiền ăn";
     ViewData["Description"] = "Tra cứu tiền ăn theo mã trường";
+    var reports = ViewData["Reports"] as IEnumerable<SchoolRecord>;
 }
+
+
+
+@model ReportMealMoneyViewModel;
+
 <div class="d-flex flex-column w-100 px-3">
-    <div class="row gx-3 gy-2 mb-2 border-bottom py-3">
+    <form class="row gx-3 gy-2 mb-2 border-bottom py-3" method="post" asp-action="TienAn" asp-controller="NurturingManagementReport">
         <div class="d-flex flex-column col-6">
             <label for="school-id" class="text-nowrap mb-1">Mã trường</label>
-            <input type="text" class="form-control" id="school-id">
+            <input type="text" class="form-control" id="school-id" asp-for="SchoolId">
+            <span asp-validation-for="SchoolId" class="text-danger"></span>
         </div>
         <div class="d-flex flex-column col-3">
             <label for="start-date-input" class="text-nowrap mb-1">Từ ngày</label>
-            <input type="date" class="form-control" id="start-date-input" placeholder="dd-mm-yyyy">
+            <input type="date" class="form-control" id="start-date-input" asp-for="StartDate">
+            <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
         <div class="d-flex flex-column col-3">
             <label for="end-date-input" class="text-nowrap mb-1">Đến ngày</label>
-            <input type="date" class="form-control" id="end-date-input" placeholder="dd-mm-yyyy">
+            <input type="date" class="form-control" id="end-date-input" asp-for="EndDate">
+            <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
         <div class="d-flex align-self-end gap-2 mt-3">
-            <button type="button" class="btn btn-outline-success" id="search-btn" style="min-width:max-content">
+            <button type="submit" class="btn btn-success" id="search-btn" style="min-width:max-content">
                 <i class="bi bi-search"></i>
                 Tìm kiếm
             </button>
-            <button type="button" class="btn btn-outline-primary" id="export-excel-btn" style="min-width:max-content">
-                <i class="bi bi-arrow-down-circle-fill"></i>
-                Xuất Excel
-            </button>
-            <button type="button" class="btn btn-outline-primary" id="export-xml-btn" style="min-width:max-content">
-                <i class="bi bi-arrow-down-circle-fill"></i>
-                Xuất Xml
-            </button>
-            <button type="button" class="btn btn-outline-primary" id="print-report-btn" style="min-width:max-content">
-                <i class="bi bi-printer-fill"></i>
-                In
-            </button>
+            @if (reports?.Count() > 0)
+            {
+                <button type="submit" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content" asp-action="ExportToExcel" asp-controller="NurturingManagementReport">
+                    <i class="bi bi-arrow-down-circle-fill"></i>
+                    Xuất Excel
+                </button>
+                <button type="submit" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content" asp-action="ExportToXml" asp-controller="NurturingManagementReport">
+                    <i class="bi bi-arrow-down-circle-fill"></i>
+                    Xuất Xml
+                </button>
+                <button type="submit" formtarget="_blank" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content" asp-action="PrintMealMoney" asp-controller="NurturingManagementReport">
+                    <i class="bi bi-printer-fill"></i>
+                    In
+                </button>
+            }
         </div>
-    </div>
+    </form>
 
-    <table class="table table-hover table-bordered my-2" id="report-table">
-        <thead class="table-light position-sticky top-0">
-            <tr>
-                <th scope="col">Ngày</th>
-                <th scope="col">Tiền ăn sáng</th>
-                <th scope="col">Tiền ăn trưa</th>
-                <th scope="col">Tiền ăn chiều</th>
-                <th scope="col">Phụ phí</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td colspan="5" class="text-center">
-                    <span class="opacity-75 text-center" id="null-text">Không có dữ liệu</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="overflow-auto my-2">
+        <table class="table table-hover table-bordered" id="report-table">
+            <thead class="table-light position-sticky top-0">
+                <tr>
+                    <th scope="col">Ngày</th>
+                    <th scope="col">Tiền ăn sáng</th>
+                    <th scope="col">Tiền ăn trưa</th>
+                    <th scope="col">Tiền ăn chiều</th>
+                    <th scope="col">Phụ phí</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (reports?.Count() > 0)
+                {
+                    foreach (var report in reports)
+                    {
+                        <tr>
+                            <td>@report.Date.ToString("dd/MM/yyyy")</td>
+                            <td>@report.TienAnSang.ToString("N0", new CultureInfo("vi-VN"))</td>
+                            <td>@report.TienAnTrua.ToString("N0", new CultureInfo("vi-VN"))</td>
+                            <td>@report.TienAnChieu.ToString("N0", new CultureInfo("vi-VN"))</td>
+                            <td>@report.PhuPhi.ToString("N0", new CultureInfo("vi-VN"))</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">
+                            <span class="opacity-75 text-center" id="null-text">Không có dữ liệu</span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
 </div>

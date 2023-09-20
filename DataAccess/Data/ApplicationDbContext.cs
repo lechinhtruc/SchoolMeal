@@ -9,7 +9,8 @@ namespace DataAccess.Data
         {
 
         }
-        public DbSet<SchoolRecord> Tbl_mealmoney { get; set; }
-        public DbSet<AccountModel> Tbl_account { get; set; }
+        public DbSet<SchoolRecord> Tbl_Mealmoney { get; set; }
+        public DbSet<AccountModel> Tbl_Account { get; set; }
+        public DbSet<HistoryLogModel> Tbl_HistoryLog { get; set; }
     }
 }

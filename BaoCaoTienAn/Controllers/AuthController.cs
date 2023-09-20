@@ -1,4 +1,6 @@
 ﻿using DataAccess.Interfaces;
+using DataAccess.Models;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -32,6 +34,9 @@ namespace BaoCaoTienAn.Controllers
                     {
                          new Claim(ClaimTypes.Name, user.Username),
                          new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                         new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
+                         new Claim("CreatedAt", user.CreatedAt.ToString()),
+                         new Claim("ExpiredAt", user.ExpiredAt.ToString()),
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);

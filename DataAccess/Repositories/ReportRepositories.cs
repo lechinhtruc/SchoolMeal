@@ -24,7 +24,7 @@ namespace DataAccess.Repositories
             var worksheet = workbook.Worksheet(1);
 
             //Get data from db
-            var reports = await _db.Tbl_mealmoney
+            var reports = await _db.Tbl_Mealmoney
             .Where(r => r.SchoolId == schoolId && r.Date >= startDate && r.Date <= endDate).OrderBy(x => x.Date)
             .ToListAsync();
 
@@ -56,7 +56,7 @@ namespace DataAccess.Repositories
 
         public async Task<MemoryStream> ExportToXml(Guid schoolId, DateTime startDate, DateTime endDate)
         {
-            var reports = await _db.Tbl_mealmoney
+            var reports = await _db.Tbl_Mealmoney
                 .Where(r => r.SchoolId == schoolId && r.Date >= startDate && r.Date <= endDate).OrderBy(x => x.Date)
                 .ToListAsync();
             var serializer = new System.Xml.Serialization.XmlSerializer(typeof(List<SchoolRecord>));
@@ -69,7 +69,7 @@ namespace DataAccess.Repositories
 
         public async Task<IEnumerable<SchoolRecord>> ReportMealMoney(Guid schoolId, DateTime startDate, DateTime endDate)
         {
-            var reports = await _db.Tbl_mealmoney
+            var reports = await _db.Tbl_Mealmoney
                 .Where(r => r.SchoolId == schoolId && r.Date >= startDate && r.Date <= endDate).OrderBy(x => x.Date)
                 .ToListAsync();
             return reports;

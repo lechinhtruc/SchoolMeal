@@ -13,12 +13,19 @@ namespace DataAccess.UnitOfWork
 
         public IAccountRepositories Account { get; }
 
-        public UnitOfWork(ApplicationDbContext db, IReportRepositories report, IAuthRepositories auth, IAccountRepositories account)
+        public IUserLog UserLog { get; }
+
+        public UnitOfWork(ApplicationDbContext db,
+            IReportRepositories report,
+            IAuthRepositories auth,
+            IAccountRepositories account,
+            IUserLog userLog)
         {
             _db = db;
             Report = report;
             Auth = auth;
             Account = account;
+            UserLog = userLog;
         }
     }
 }

@@ -5,5 +5,6 @@
         IReportRepositories Report { get; }
         IAuthRepositories Auth { get; }
         IAccountRepositories Account { get; }
+        IUserLog UserLog { get; }
     }
 }

@@ -1,14 +1,15 @@
 ﻿@using System.Security.Claims;
+@model DataAccess.Models.AccountModel;
 
 @{
     ViewData["Title"] = "Thông tin";
-    ViewData["Description"] = "Thông tin chi tiết của tài khoản " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
+    ViewData["Description"] = "Thông tin chi tiết của tài khoản " + Model.Username;
 }
 
 <div class="d-flex flex-column px-5 w-100 justify-content-center">
     <div class="d-flex flex-column w-100">
         <div class="d-flex flex-column align-items-center mb-3">
-            <div class="d-flex align-items-center justify-content-center rounded-pill border" style="min-width:80px;min-height:80px;">
+            <div class="d-flex align-items-center justify-content-center rounded-pill border text-bg-secondary" style="min-width:80px;min-height:80px;">
                 <i class="bi bi-person-fill fs-1"></i>
             </div>
             <span class="fw-bold text-uppercase my-3 fs-5">Thông tin chi tiết</span>
@@ -18,7 +19,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-person-vcard-fill"></i></span>
                 <div class="form-floating">
-                    <input type="text" disabled class="form-control" id="upsername" value="@User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value">
+                    <input type="text" disabled class="form-control" id="upsername" value="@Model.Username">
                     <label for="username">Tên tài khoản</label>
                 </div>
                 <button class="btn btn-secondary input-group-text"><i class="bi bi-clipboard"></i></button>
@@ -26,7 +27,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-phone-fill"></i></span>
                 <div class="form-floating">
-                    <input type="tel" disabled class="form-control" id="date" value="0123456789">
+                    <input type="tel" disabled class="form-control" id="date" value="@Model.PhoneNumber">
                     <label for="telphone">Số điện thoại</label>
                 </div>
                 <button class="btn btn-secondary input-group-text"><i class="bi bi-clipboard"></i></button>
@@ -34,7 +35,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-calendar3"></i></span>
                 <div class="form-floating">
-                    <input type="text" disabled class="form-control" id="createDate" value="14/09/2023">
+                    <input type="text" disabled class="form-control" id="createDate" asp-for="CreatedAt">
                     <label for="createDate">Ngày tạo</label>
                 </div>
                 <button class="btn btn-secondary input-group-text"><i class="bi bi-clipboard"></i></button>
@@ -43,7 +44,7 @@
             <div class="input-group">
                 <span class="input-group-text"><i class="bi bi-calendar-x"></i></span>
                 <div class="form-floating">
-                    <input type="text" disabled class="form-control" id="expiryDate" value="14/09/2023">
+                    <input type="text" disabled class="form-control" id="expiryDate" asp-for="ExpiredAt">
                     <label for="expiryDate">Ngày hết hạn</label>
                 </div>
                 <button class="btn btn-secondary input-group-text"><i class="bi bi-calendar-plus"></i></button>

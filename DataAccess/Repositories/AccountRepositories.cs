@@ -1,5 +1,6 @@
 ﻿using DataAccess.Data;
 using DataAccess.Interfaces;
+using DataAccess.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories
@@ -15,7 +16,7 @@ namespace DataAccess.Repositories
 
         public async Task<bool> ChangePassword(int Id, string OldPassword, string NewPassword)
         {
-            var user = await _db.Tbl_account.FirstOrDefaultAsync(x => x.Id == Id && x.Password == OldPassword);
+            var user = await _db.Tbl_Account.FirstOrDefaultAsync(x => x.Id == Id && x.Password == OldPassword);
             if (user != null)
             {
                 user.Password = NewPassword;
@@ -28,5 +29,10 @@ namespace DataAccess.Repositories
             }
         }
 
+        public async Task<AccountModel> GetAccountInfomation(int Id)
+        {
+            var infomation = await _db.Tbl_Account.FirstOrDefaultAsync(x => x.Id == Id);
+            return infomation ?? new AccountModel();
+        }
     }
 }

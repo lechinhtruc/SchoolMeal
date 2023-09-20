@@ -4,7 +4,6 @@ namespace BaoCaoTienAn.ViewModels
 {
     public class ChangePasswordViewModel
     {
-        [Key]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Nhập mật khẩu cũ!")]

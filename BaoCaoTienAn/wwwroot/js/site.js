@@ -55,37 +55,4 @@
     }
 
 
-    $('#search-btn').on('click', () => {
-        const schoolId = $('#school-id').val()
-        const startDate = $('#start-date-input').val()
-        const endDate = $('#end-date-input').val()
-        GetMealMoney(schoolId, startDate, endDate)
-    })
-
-    $('#export-excel-btn').on('click', () => {
-        const schoolId = $('#school-id').val().trim()
-        const startDate = $('#start-date-input').val().trim()
-        const endDate = $('#end-date-input').val().trim()
-        if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
-            ExportToExcel(schoolId, startDate, endDate)
-        }
-    })
-
-    $('#export-xml-btn').on('click', () => {
-        const schoolId = $('#school-id').val().trim()
-        const startDate = $('#start-date-input').val().trim()
-        const endDate = $('#end-date-input').val().trim()
-        if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
-            ExportToXml(schoolId, startDate, endDate)
-        }
-    })
-
-    $('#print-report-btn').on('click', () => {
-        const schoolId = $('#school-id').val().trim()
-        const startDate = $('#start-date-input').val().trim()
-        const endDate = $('#end-date-input').val().trim()
-        if (schoolId.length > 0 & startDate.length > 0 & endDate.length > 0) {
-            window.open(`/NurturingManagementReport/PrintMealMoney/?schoolId=${schoolId}&startDate=${startDate}&endDate=${endDate}`, '_blank')
-        }
-    })
 })
