@@ -21,5 +21,7 @@ namespace DataAccess.Models
 
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiredAt { get; set; }
+
+        public string Role { get; set; } = "User";
     }
 }

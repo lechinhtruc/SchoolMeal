@@ -1,6 +1,7 @@
 ﻿using DataAccess.Data;
 using DataAccess.Interfaces;
 using DataAccess.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories
 {
@@ -17,6 +18,12 @@ namespace DataAccess.Repositories
             _db.Add(historyLog);
             _db.SaveChanges();
             return historyLog;
+        }
+
+        public async Task<IEnumerable<HistoryLogModel>> GetAll()
+        {
+            var logs = await _db.Tbl_HistoryLog.OrderBy(x => x.DateTime).ToListAsync();
+            return logs;
         }
     }
 }

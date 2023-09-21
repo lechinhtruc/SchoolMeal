@@ -15,12 +15,13 @@ builder.Services.AddScoped<IAccountRepositories, AccountRepositories>();
 builder.Services.AddScoped<IUserLog, UserLogRepositories>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-    builder.Configuration.GetConnectionString("DbConnection"), b => b.MigrationsAssembly("BaoCaoTienAn")
+    builder.Configuration.GetConnectionString("DbConnection"), b => b.MigrationsAssembly("SchoolMeal.WebApp")
 ));
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie((option) =>
     {
         option.LoginPath = "/Auth/DangNhap";
+        option.AccessDeniedPath = "/";
         option.Cookie.Name = "SchoolMeal.Session";
     });
 

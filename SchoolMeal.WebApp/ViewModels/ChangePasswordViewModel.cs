@@ -14,6 +14,6 @@ namespace BaoCaoTienAn.ViewModels
 
         [Required(ErrorMessage = "Nhập lại mật khẩu mới!")]
         [Compare("NewPassword", ErrorMessage = "Mật khẩu mới không khớp!")]
-        public string ConfirmPassword { get; set;} = string.Empty;
+        public string ConfirmPassword { get; set; } = string.Empty;
     }
 }

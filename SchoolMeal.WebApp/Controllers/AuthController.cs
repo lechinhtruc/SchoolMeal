@@ -1,6 +1,4 @@
 ﻿using DataAccess.Interfaces;
-using DataAccess.Models;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -33,6 +31,7 @@ namespace BaoCaoTienAn.Controllers
                     var claims = new List<Claim>
                     {
                          new Claim(ClaimTypes.Name, user.Username),
+                         new Claim(ClaimTypes.Role, user.Role),
                          new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                          new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
                          new Claim("CreatedAt", user.CreatedAt.ToString()),

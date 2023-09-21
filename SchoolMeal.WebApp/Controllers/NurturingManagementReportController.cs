@@ -1,11 +1,8 @@
 ﻿
 using BaoCaoTienAn.ViewModels;
 using DataAccess.Interfaces;
-using DataAccess.Models;
-using DataAccess.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
 
 namespace BaoCaoTienAn.Controllers
 {
