@@ -4,7 +4,7 @@
     {
         <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseManageAccount">
             <i class="bi bi-person-lines-fill me-1"></i>
-            <span class="fw-bold w-100 text-start">Quản lí tài khoản</span>
+            <span class="fw-bold w-100 text-start">Quản lí</span>
             <i class="bi bi-caret-down-fill" style="font-size:10px;"></i>
         </span>
 
@@ -15,6 +15,12 @@
                asp-action="LichSuHoatDong">
                 <i class="bi bi-dot"></i>
                 <span class="fw-bold">Lịch sử hoạt động</span>
+            </a>
+            <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TaoTaiKhoan" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+               asp-controller="ManageAccount"
+               asp-action="TaoTaiKhoan">
+                <i class="bi bi-dot"></i>
+                <span class="fw-bold">Tạo tài khoản mới</span>
             </a>
         </div>
     }

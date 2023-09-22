@@ -1,8 +1,8 @@
 ﻿using BaoCaoTienAn.Controllers;
 using DataAccess.Interfaces;
+using DataAccess.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using SchoolMeal.WebApp.ViewModels;
 
 namespace SchoolMeal.WebApp.Controllers
 {
@@ -21,12 +21,34 @@ namespace SchoolMeal.WebApp.Controllers
             return View();
         }
 
+        public IActionResult TaoTaiKhoan()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        [ActionName("TaoTaiKhoan")]
+        public IActionResult CreateAccount(AccountModel account)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = _unitOfWork.Account.CreateAccount(account);
+                if (user.Id != 0)
+                {
+                    TempData["Result"] = "Tạo tài khoản thành công!";
+                    return RedirectToAction("TaoTaiKhoan");
+                }
+                else
+                {
+                    ModelState.AddModelError(nameof(user.Username), "Tài khoản đã tồn tại!");
+                }
+            }
+            return View("TaoTaiKhoan");
+        }
+
         public async Task<IActionResult> LichSuHoatDong()
         {
-            var logs = await _unitOfWork.UserLog.GetAll();
-            var historyLogView = new HistoryLogViewModel();
-            ViewData["Logs"] = logs;
-            return View(historyLogView);
+            return View(await _unitOfWork.UserLog.GetAll());
         }
 
     }

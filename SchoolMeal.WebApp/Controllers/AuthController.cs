@@ -43,7 +43,6 @@ namespace BaoCaoTienAn.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 ModelState.AddModelError(nameof(user.Password), "Thông tin đăng nhập không chính xác");
-                return View("DangNhap");
             }
             return View("DangNhap");
         }

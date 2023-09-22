@@ -55,10 +55,9 @@ namespace BaoCaoTienAn.Controllers
                 else
                 {
                     ModelState.AddModelError("OldPassword", "Mật khẩu cũ không chính xác!");
-                    return View("DoiMatKhau");
                 }
             }
-            return View();
+            return View("DoiMatKhau");
         }
 
         public IActionResult Logout()

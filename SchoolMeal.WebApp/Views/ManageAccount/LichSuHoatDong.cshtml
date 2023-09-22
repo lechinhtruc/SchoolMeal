@@ -1,12 +1,10 @@
 ﻿@using DataAccess.Models;
-@using SchoolMeal.WebApp.ViewModels;
 @{
     ViewData["Title"] = "Lịch sử hoạt động";
     ViewData["Description"] = "Tra cứu lịch sử hoạt động của tài khoản";
-    var logs = ViewData["Logs"] as IEnumerable<HistoryLogModel>;
 }
 
-@model HistoryLogViewModel;
+@model IEnumerable<HistoryLogModel>
 
 <div class="d-flex flex-column w-100 px-3 overflow-auto">
     <table id="dtHistoryLog" class="table table-striped table-hover table-bordered" width="100%">
@@ -20,8 +18,8 @@
             </tr>
         </thead>
         <tbody>
-            @if (logs?.Count() > 0)
-                @foreach (var log in logs)
+            @if (Model.Count() > 0)
+                @foreach (var log in Model)
                 {
                     <tr>
                         <td>@log.DateTime.ToString("G")</td>

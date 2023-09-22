@@ -15,7 +15,7 @@ namespace DataAccess.Repositories
 
         public async Task<AccountModel> Login(string Username, string Password)
         {
-            var user = await _db.Tbl_Account.FirstOrDefaultAsync(x => x.Username == Username && x.Password == Password);
+            var user = await _db.Tbl_Account.FirstOrDefaultAsync(x => x.Username == Username && x.Password == AccountModel.HashPassword(Password));
             return user ?? new AccountModel();
         }
 
