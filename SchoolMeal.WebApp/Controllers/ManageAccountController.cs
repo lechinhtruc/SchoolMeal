@@ -26,6 +26,24 @@ namespace SchoolMeal.WebApp.Controllers
             return View();
         }
 
+        public async Task<IActionResult> TaiKhoan()
+        {
+            var accounts = await _unitOfWork.ManageAccounts.GetAllAccount();
+            return View(accounts);
+        }
+
+        public async Task<IActionResult> LichSuHoatDong()
+        {
+            return View(await _unitOfWork.UserLog.GetAll());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteAccount(int Id)
+        {
+            await _unitOfWork.ManageAccounts.DeleteAccount(Id);
+            return RedirectToAction("TaiKhoan");
+        }
+
         [HttpPost]
         [ActionName("TaoTaiKhoan")]
         public IActionResult CreateAccount(AccountModel account)
@@ -45,11 +63,5 @@ namespace SchoolMeal.WebApp.Controllers
             }
             return View("TaoTaiKhoan");
         }
-
-        public async Task<IActionResult> LichSuHoatDong()
-        {
-            return View(await _unitOfWork.UserLog.GetAll());
-        }
-
     }
 }

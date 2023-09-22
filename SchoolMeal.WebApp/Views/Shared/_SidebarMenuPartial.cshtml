@@ -16,6 +16,12 @@
                 <i class="bi bi-dot"></i>
                 <span class="fw-bold">Lịch sử hoạt động</span>
             </a>
+            <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TaiKhoan" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+               asp-controller="ManageAccount"
+               asp-action="TaiKhoan">
+                <i class="bi bi-dot"></i>
+                <span class="fw-bold">Tài khoản</span>
+            </a>
             <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TaoTaiKhoan" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
                asp-controller="ManageAccount"
                asp-action="TaoTaiKhoan">

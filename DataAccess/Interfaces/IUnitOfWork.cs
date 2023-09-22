@@ -6,5 +6,6 @@
         IAuthRepositories Auth { get; }
         IAccountRepositories Account { get; }
         IUserLog UserLog { get; }
+        IManageAccountsRepositories ManageAccounts { get; }
     }
 }

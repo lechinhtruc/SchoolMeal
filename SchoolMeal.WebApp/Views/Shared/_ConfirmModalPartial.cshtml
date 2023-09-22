@@ -1,0 +1,19 @@
+﻿<div class="modal fade" id="confirmModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form asp-action="DeleteAccount" asp-controller="ManageAccount" method="post">
+                <input hidden id="userId" name="Id"/>
+                <div class="modal-header">
+                    <h5 class="modal-title">Xoá người dùng</h5>
+                </div>
+                <div class="modal-body">
+                    <p>Bạn có chắc chắn muốn xoá người dùng?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-danger" id="deleteBtn">Xoá</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

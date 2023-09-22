@@ -9,11 +9,14 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 builder.Services.AddScoped<IReportRepositories, ReportRepositories>();
 builder.Services.AddScoped<IAuthRepositories, AuthRepositories>();
 builder.Services.AddScoped<IAccountRepositories, AccountRepositories>();
 builder.Services.AddScoped<IUserLog, UserLogRepositories>();
+builder.Services.AddScoped<IManageAccountsRepositories, ManageAccountsRepositories>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DbConnection"), b => b.MigrationsAssembly("SchoolMeal.WebApp")
 ));
