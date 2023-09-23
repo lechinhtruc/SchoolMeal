@@ -6,13 +6,11 @@
     ViewData["Description"] = "Tra cứu tiền ăn theo mã trường";
     var reports = ViewData["Reports"] as IEnumerable<SchoolRecord>;
 }
-
-
-
 @model ReportMealMoneyViewModel;
 
 <div class="d-flex flex-column w-100 px-3">
-    <form class="row gx-3 gy-2 mb-2 border-bottom py-3" method="post" asp-action="TienAn" asp-controller="NurturingManagementReport">
+    <form class="row gx-3 gy-2 mb-2 border-bottom py-3" method="post" asp-action="TienAn"
+          asp-controller="NurturingManagementReport">
         <div class="d-flex flex-column col-6">
             <label for="school-id" class="text-nowrap mb-1">Mã trường</label>
             <input type="text" class="form-control" id="school-id" asp-for="SchoolId">
@@ -35,15 +33,18 @@
             </button>
             @if (reports?.Count() > 0)
             {
-                <button type="submit" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content" asp-action="ExportToExcel" asp-controller="NurturingManagementReport">
+                <button type="submit" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content"
+                        asp-action="ExportToExcel" asp-controller="NurturingManagementReport">
                     <i class="bi bi-arrow-down-circle-fill"></i>
                     Xuất Excel
                 </button>
-                <button type="submit" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content" asp-action="ExportToXml" asp-controller="NurturingManagementReport">
+                <button type="submit" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content"
+                        asp-action="ExportToXml" asp-controller="NurturingManagementReport">
                     <i class="bi bi-arrow-down-circle-fill"></i>
                     Xuất Xml
                 </button>
-                <button type="submit" formtarget="_blank" formmethod="post" class="btn btn-outline-primary" style="min-width:max-content" asp-action="PrintMealMoney" asp-controller="NurturingManagementReport">
+                <button type="submit" formtarget="_blank" formmethod="post" class="btn btn-outline-primary"
+                        style="min-width:max-content" asp-action="PrintMealMoney" asp-controller="NurturingManagementReport">
                     <i class="bi bi-printer-fill"></i>
                     In
                 </button>

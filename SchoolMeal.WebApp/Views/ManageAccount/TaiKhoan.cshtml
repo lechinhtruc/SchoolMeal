@@ -30,7 +30,10 @@
                         <td>@user.Role</td>
                         <td class="d-flex gap-1 align-items-center justify-content-center">
                             <button type="button" class="btn btn-success" id="editUserBtn"><i class="bi bi-pencil-square"></i> Sửa</button>
-                            <button type="button" class="btn btn-danger deleteUserBtn @(user.Role == "Admin" ? "disabled" : "")" data-delete-user-id="@user.Id"><i class="bi bi-person-x-fill"></i> Xoá</button>
+                            <button type="button" class="btn btn-danger deleteUserBtn @(user.Role == "Admin" ? "disabled" : "")" delete-user-id=@(user.Role != "Admin" ? user.Id : "")>
+                                <i class="bi bi-person-x-fill"></i>
+                                Xoá
+                            </button>
                         </td>
                     </tr>
                 }
