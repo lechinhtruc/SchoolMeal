@@ -24,7 +24,6 @@ namespace DataAccess.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
-
         [Required(ErrorMessage = "Hãy nhập ngày hết hạn!")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiredAt { get; set; }

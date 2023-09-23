@@ -30,12 +30,12 @@ namespace BaoCaoTienAn.Controllers
                 {
                     var claims = new List<Claim>
                     {
-                         new Claim(ClaimTypes.Name, user.Username),
-                         new Claim(ClaimTypes.Role, user.Role),
-                         new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                         new Claim(ClaimTypes.MobilePhone, user.PhoneNumber),
-                         new Claim("CreatedAt", user.CreatedAt.ToString()),
-                         new Claim("ExpiredAt", user.ExpiredAt.ToString()),
+                         new(ClaimTypes.Name, user.Username),
+                         new(ClaimTypes.Role, user.Role),
+                         new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                         new(ClaimTypes.MobilePhone, user.PhoneNumber),
+                         new("CreatedAt", user.CreatedAt.ToString()),
+                         new("ExpiredAt", user.ExpiredAt.ToString()),
                     };
                     var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
