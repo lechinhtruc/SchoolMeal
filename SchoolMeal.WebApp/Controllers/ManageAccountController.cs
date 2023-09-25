@@ -1,8 +1,11 @@
 ﻿using BaoCaoTienAn.Controllers;
 using DataAccess.Interfaces;
 using DataAccess.Models;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
+using SchoolMeal.WebApp.ViewModels;
 
 namespace SchoolMeal.WebApp.Controllers
 {
@@ -35,6 +38,36 @@ namespace SchoolMeal.WebApp.Controllers
         public async Task<IActionResult> LichSuHoatDong()
         {
             return View(await _unitOfWork.UserLog.GetAll());
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> ShowUpdateAccountModal(int Id)
+        {
+            var account = await _unitOfWork.Account.GetAccountInfomation(Id);
+            EditUserViewModel editUser = new()
+            {
+                Id = account.Id,
+                Username = account.Username,
+                PhoneNumber = account.PhoneNumber,
+                ExpiredAt = account.ExpiredAt,
+                Role = account.Role,
+            };
+            return PartialView("_EditUserModalPartial", editUser);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateAccount(EditUserViewModel editUser)
+        {
+            if (ModelState.IsValid)
+            {
+                var account = await _unitOfWork.Account.GetAccountInfomation(editUser.Id);
+                account.Username = editUser.Username;
+                account.PhoneNumber = editUser.PhoneNumber;
+                account.ExpiredAt = editUser.ExpiredAt;
+                account.Role = editUser.Role;
+                await _unitOfWork.ManageAccounts.UpdateAccount(account);
+            }
+            return RedirectToAction("TaiKhoan");
         }
 
         [HttpPost]

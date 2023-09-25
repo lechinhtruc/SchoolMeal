@@ -1,5 +1,4 @@
-﻿
-using BaoCaoTienAn.ViewModels;
+﻿using BaoCaoTienAn.ViewModels;
 using DataAccess.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

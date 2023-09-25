@@ -28,5 +28,12 @@ namespace DataAccess.Repositories
                 _db.SaveChanges();
             }
         }
+
+        public async Task<AccountModel> UpdateAccount(AccountModel account)
+        {
+            _db.Tbl_Account.Update(account);
+            await _db.SaveChangesAsync();
+            return account;
+        }
     }
 }
