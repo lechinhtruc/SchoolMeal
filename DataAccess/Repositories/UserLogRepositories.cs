@@ -22,7 +22,7 @@ namespace DataAccess.Repositories
 
         public async Task<IEnumerable<HistoryLogModel>> GetAll()
         {
-            var logs = await _db.Tbl_HistoryLog.OrderBy(x => x.DateTime).ToListAsync();
+            var logs = await _db.Tbl_HistoryLog.OrderByDescending(x=> x.LogID).ToListAsync();
             return logs;
         }
     }

@@ -9,5 +9,7 @@ namespace DataAccess.Interfaces
         public Task<bool> ChangePassword(int Id, string OldPassword, string NewPassword);
 
         public Task<AccountModel> GetAccountInfomation(int Id);
+
+        public Task<AccountModel> UpdateAccount(AccountModel account);
     }
 }

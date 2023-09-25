@@ -1,10 +1,8 @@
 ﻿using BaoCaoTienAn.Controllers;
 using DataAccess.Interfaces;
 using DataAccess.Models;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Identity.Client;
 using SchoolMeal.WebApp.ViewModels;
 
 namespace SchoolMeal.WebApp.Controllers
@@ -55,6 +53,12 @@ namespace SchoolMeal.WebApp.Controllers
             return PartialView("_EditUserModalPartial", editUser);
         }
 
+        [HttpGet]
+        public IActionResult ShowCreateAccountModal()
+        {
+            return PartialView("_CreateAccountModalPartial");
+        }
+
         [HttpPost]
         public async Task<IActionResult> UpdateAccount(EditUserViewModel editUser)
         {
@@ -65,7 +69,7 @@ namespace SchoolMeal.WebApp.Controllers
                 account.PhoneNumber = editUser.PhoneNumber;
                 account.ExpiredAt = editUser.ExpiredAt;
                 account.Role = editUser.Role;
-                await _unitOfWork.ManageAccounts.UpdateAccount(account);
+                await _unitOfWork.Account.UpdateAccount(account);
             }
             return RedirectToAction("TaiKhoan");
         }
@@ -87,14 +91,9 @@ namespace SchoolMeal.WebApp.Controllers
                 if (user.Id != 0)
                 {
                     TempData["Result"] = "Tạo tài khoản thành công!";
-                    return RedirectToAction("TaoTaiKhoan");
-                }
-                else
-                {
-                    ModelState.AddModelError(nameof(user.Username), "Tài khoản đã tồn tại!");
                 }
             }
-            return View("TaoTaiKhoan");
+            return RedirectToAction("TaiKhoan");
         }
     }
 }

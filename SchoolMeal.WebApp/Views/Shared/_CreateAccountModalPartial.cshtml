@@ -1,0 +1,51 @@
+﻿@using DataAccess.Models;
+
+@model AccountModel;
+
+<div class="modal fade" id="createAccountModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <form asp-action="TaoTaiKhoan" asp-controller="ManageAccount" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title">Tạo người dùng mới</h5>
+                </div>
+                <div class="modal-body d-flex flex-column gap-2" style="width:500px;" method="post" asp-action="TaoTaiKhoan" asp-controller="ManageAccount">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="Username" placeholder="Tên người dùng" asp-for="Username">
+                        <label for="Username">Tên người dùng</label>
+                        <span asp-validation-for="Username" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="Password" placeholder="Mật khẩu" asp-for="Password">
+                        <label for="Password">Mật khẩu</label>
+                        <span asp-validation-for="Password" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating">
+                        <input type="tel" class="form-control" id="PhoneNumber" placeholder="Số điện thoại" asp-for="PhoneNumber">
+                        <label for="PhoneNumber">Số điện thoại</label>
+                        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating w-100">
+                        <select class="form-select" id="UserRoles" aria-label="Floating label select" asp-for="Role">
+                            <option selected value="">Chọn quyền hạn của người dùng</option>
+                            <option value="User">Người dùng</option>
+                            <option value="Admin">Người quản trị (Admin)</option>
+                        </select>
+                        <label for="UserRoles">Quyền hạn</label>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div>
+                    <div class="form-floating w-100">
+                        <input type="date" class="form-control" id="ExpiredDate" placeholder="Hạn sử dụng" asp-for="ExpiredAt">
+                        <label for="ExpiredDate">Hạn sử dụng</label>
+                        <span asp-validation-for="ExpiredAt" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-success">Tạo người dùng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<partial name="_ValidationScriptsPartial" />

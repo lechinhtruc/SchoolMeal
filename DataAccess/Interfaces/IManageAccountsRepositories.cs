@@ -7,7 +7,5 @@ namespace DataAccess.Interfaces
         public Task<IEnumerable<AccountModel>> GetAllAccount();
 
         public Task DeleteAccount(int Id);
-
-        public Task<AccountModel> UpdateAccount(AccountModel account);
     }
 }

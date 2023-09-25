@@ -7,6 +7,12 @@
 @model IEnumerable<AccountModel>
 
 <div class="d-flex flex-column w-100 px-3 overflow-auto">
+    <div class="d-flex mt-3">
+        <button class="btn btn-success d-flex align-items-center gap-2 create-user-btn">
+            <i class="bi bi-person-fill-add fs-5"></i>
+            Tạo người dùng mới
+        </button>
+    </div>
     <table id="dtHistoryLog" class="table table-striped table-hover table-bordered" width="100%">
         <thead class="table-light">
             <tr>

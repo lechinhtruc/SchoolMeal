@@ -55,5 +55,15 @@ namespace DataAccess.Repositories
             var infomation = await _db.Tbl_Account.FirstOrDefaultAsync(x => x.Id == Id);
             return infomation ?? new AccountModel();
         }
+
+        public async Task<AccountModel> UpdateAccount(AccountModel account)
+        {
+            if (!IsExitsAccount(account.Username))
+            {
+                _db.Tbl_Account.Update(account);
+                await _db.SaveChangesAsync();
+            }
+            return account;
+        }
     }
 }
