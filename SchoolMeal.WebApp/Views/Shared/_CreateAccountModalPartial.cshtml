@@ -11,7 +11,7 @@
                 </div>
                 <div class="modal-body d-flex flex-column gap-2" style="width:500px;" method="post" asp-action="TaoTaiKhoan" asp-controller="ManageAccount">
                     <div class="form-floating">
-                        <input type="text" class="form-control" id="Username" placeholder="Tên người dùng" asp-for="Username">
+                        <input type="text" class="form-control" id="Username" placeholder="Tên người dùng" asp-for="Username" autocomplete="off">
                         <label for="Username">Tên người dùng</label>
                         <span asp-validation-for="Username" class="text-danger"></span>
                     </div>
@@ -21,7 +21,7 @@
                         <span asp-validation-for="Password" class="text-danger"></span>
                     </div>
                     <div class="form-floating">
-                        <input type="tel" class="form-control" id="PhoneNumber" placeholder="Số điện thoại" asp-for="PhoneNumber">
+                        <input type="tel" class="form-control" id="PhoneNumber" placeholder="Số điện thoại" asp-for="PhoneNumber" autocomplete="off">
                         <label for="PhoneNumber">Số điện thoại</label>
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
