@@ -46,7 +46,7 @@ namespace BaoCaoTienAn.Controllers
             if (ModelState.IsValid)
             {
                 int Id = int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value);
-                var changePassword = await _unitOfWork.Account.ChangePassword(Id, OldPassword, NewPassword);
+                bool changePassword = await _unitOfWork.Account.ChangePassword(Id, OldPassword, NewPassword);
                 if (changePassword)
                 {
                     TempData["Result"] = "Đổi mật khẩu thành công!";
