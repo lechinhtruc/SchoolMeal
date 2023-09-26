@@ -28,7 +28,9 @@ namespace BaoCaoTienAn.Controllers
                 var user = await _unitOfWork.Auth.Login(Username, Password);
                 if (user.Id != 0)
                 {
-                    var claims = new List<Claim>
+                    if (user.ExpiredAt > DateTime.Now)
+                    {
+                        var claims = new List<Claim>
                     {
                          new(ClaimTypes.Name, user.Username),
                          new(ClaimTypes.Role, user.Role),
@@ -37,12 +39,21 @@ namespace BaoCaoTienAn.Controllers
                          new("CreatedAt", user.CreatedAt.ToString()),
                          new("ExpiredAt", user.ExpiredAt.ToString()),
                     };
-                    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-                    return RedirectToAction("Index", "Home");
+                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError(nameof(user.Username), "Tài khoản đã hết hạn, hãy gia hạn để tiếp tục sử dụng!");
+                    }
+
                 }
-                ModelState.AddModelError(nameof(user.Password), "Thông tin đăng nhập không chính xác");
+                else
+                {
+                    ModelState.AddModelError(nameof(user.Password), "Thông tin đăng nhập không chính xác");
+                }
             }
             return View("DangNhap");
         }
