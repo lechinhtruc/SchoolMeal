@@ -12,6 +12,7 @@ namespace SchoolMeal.WebApp.ViewModels
         public string Username { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Hãy nhập số điện thoại!")]
+        [MinLength(10, ErrorMessage = "Số điện thoại không được ít hơn 10 số!")]
         [MaxLength(10, ErrorMessage = "Số điện thoại không được quá 10 số!")]
         [Phone(ErrorMessage = "Số điện thoại không hợp lệ!")]
         public string PhoneNumber { get; set; } = string.Empty;
