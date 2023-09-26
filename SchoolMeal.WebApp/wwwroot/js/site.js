@@ -10,32 +10,26 @@
         $.ajax({
             url: `/ManageAccount/ShowUpdateAccountModal?Id=${userId}`,
             success: function (modal) {
-                ShowEditUserModal(modal)
+                ShowModal(modal)
             }
         });
-    }) //Open edit user modal
+    }) //Open Edit User Modal
 
     $('.create-user-btn').on('click', () => {
         $.ajax({
             url: `/ManageAccount/ShowCreateAccountModal`,
             success: function (modal) {
-                ShowCreateAccountModal(modal)
+                ShowModal(modal)
             }
         });
-    })
+    }) // Open Create User Modal
 
-    function ShowEditUserModal(modal) {
+    function ShowModal(modal) {
+        const modalId = $(modal).attr("id");
         $('body').append(modal);
-        $('#editUserModal').modal("show");
-        $('#editUserModal').on('hidden.bs.modal', () => {
-            location.reload();
-        })
-    }
-
-    function ShowCreateAccountModal(modal) {
-        $('body').append(modal);
-        $('#createAccountModal').modal("show");
-        $('#createAccountModal').on('hidden.bs.modal', () => {
+        $(`#${modalId}`).modal("show");
+        $(`#${modalId}`).on('hidden.bs.modal', () => {
+            console.log("hideeee")
             location.reload();
         })
     }
