@@ -14,34 +14,95 @@
 <body class="overflow-hidden bg-body-secondary vh-100 vw-100">
     <partial name="_ResultToastPartial" />
     <partial name="_ConfirmModalPartial" />
-    <div class="d-flex p-3 h-100 w-100">
-        <div class="d-flex flex-column bg-white h-100 rounded shadow-sm me-2" style="min-width:250px;">
-            <div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                    <img src="/resources/logo1.png" alt="Logo" width="120" height="60" />
-                </a>
-            </div>
-            <partial name="_SidebarMenuPartial" />
-            <small class="opacity-50 text-center user-select-none" style="font-size:12px;">© Kidsoft</small>
-        </div>
+    <div class="d-flex flex-column p-3 h-100 w-100 gap-2">
+        <nav class="navbar navbar-expand-md bg-white rounded py-1">
+            <div class="container-fluid">
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 align-items-center fw-bold">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-building-fill fs-5"></i>
+                                Hệ thống
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Hệ thống 1</a></li>
+                                <li><a class="dropdown-item" href="#">Hệ thống 2</a></li>
+                            </ul>
+                        </li>
 
-        <div class="d-flex flex-column w-100 h-100">
-            <header class="d-flex justify-content-between align-items-center rounded shadow-sm bg-white px-3 py-2">
-                <span class="d-flex flex-column">
-                    <b class="fs-4">@ViewData["Title"]</b>
-                    <small class="opacity-75">@ViewData["Description"]</small>
-                </span>
+                        <li><hr style="width:1px;height:20px;" /></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-menu-button-fill fs-5"></i>
+                                Danh mục
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Danh mục 1</a></li>
+                                <li><a class="dropdown-item" href="#">Danh mục 2</a></li>
+                            </ul>
+                        </li>
+
+                        <li><hr style="width:1px;height:20px;" /></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-table fs-5"></i>
+                                Quản lý
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Quản lý 1</a></li>
+                                <li><a class="dropdown-item" href="#">Quản lý 2</a></li>
+                            </ul>
+                        </li>
+
+                        <li><hr style="width:1px;height:20px;" /></li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-graph-up fs-5"></i>
+                                Báo cáo
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Báo cáo 1</a></li>
+                                <li><a class="dropdown-item" href="#">Báo cáo 2</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
                 <div class="d-flex gap-1 align-items-center">
                     <partial name="_NotificationDropDownPartial" />
                     <hr style="width:1px;height:20px;" />
                     <partial name="_UserDropDownPartial" />
                 </div>
-            </header>
-            <div class="d-flex rounded shadow-sm bg-white mt-2 w-100 h-100 position-relative overflow-hidden">
-                <partial name="_LoadingPartial" />
-                @RenderBody()
+            </div>
+        </nav>
+        <div class="d-flex h-100">
+            <div class="d-flex flex-column bg-white h-100 rounded shadow-sm me-2" style="min-width:250px;">
+                <div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
+                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                        <img src="/resources/logo1.png" alt="Logo" width="120" height="60" />
+                    </a>
+                </div>
+                <partial name="_SidebarMenuPartial" />
+                <small class="opacity-50 text-center user-select-none" style="font-size:12px;">© Kidsoft</small>
+            </div>
+
+            <div class="d-flex flex-column w-100 h-100 gap-2">
+                <header class="d-flex justify-content-between align-items-center rounded px-3 bg-white py-2">
+                    <span class="flex-column d-none d-sm-flex">
+                        <b class="fs-4">@ViewData["Title"]</b>
+                        <small class="opacity-75">@ViewData["Description"]</small>
+                    </span>
+
+                </header>
+                <div class="d-flex rounded shadow-sm bg-white w-100 h-100 position-relative overflow-hidden">
+                    <partial name="_LoadingPartial" />
+                    @RenderBody()
+                </div>
             </div>
         </div>
+
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
