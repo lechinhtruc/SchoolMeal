@@ -30,11 +30,13 @@ namespace BaoCaoTienAn.Controllers
                 CreatedAt = CreatedAt,
                 ExpiredAt = ExpiredAt,
             };
+            ViewData["Root"] = "Tài khoản";
             return View(infomation);
         }
 
         public IActionResult DoiMatKhau()
         {
+            ViewData["Root"] = "Tài khoản";
             return View();
         }
 
@@ -57,6 +59,7 @@ namespace BaoCaoTienAn.Controllers
                     ModelState.AddModelError("OldPassword", "Mật khẩu cũ không chính xác!");
                 }
             }
+            ViewData["Root"] = "Tài khoản";
             return View("DoiMatKhau");
         }
 

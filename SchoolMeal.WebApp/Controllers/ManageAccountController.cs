@@ -29,12 +29,14 @@ namespace SchoolMeal.WebApp.Controllers
 
         public async Task<IActionResult> TaiKhoan()
         {
+            ViewData["Root"] = "Quản lí";
             var accounts = await _unitOfWork.ManageAccounts.GetAllAccount();
             return View(accounts);
         }
 
         public async Task<IActionResult> LichSuHoatDong()
         {
+            ViewData["Root"] = "Quản lí";
             return View(await _unitOfWork.UserLog.GetAll());
         }
 

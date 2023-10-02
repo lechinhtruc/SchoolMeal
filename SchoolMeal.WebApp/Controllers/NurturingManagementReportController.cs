@@ -22,6 +22,7 @@ namespace BaoCaoTienAn.Controllers
         {
             try
             {
+                ViewData["Root"] = "Báo cáo";
                 ViewData["Reports"] = await _unitOfWork.Report.ReportMealMoney(schoolId, startDate, endDate);
                 return View("TienAn");
             }
@@ -34,6 +35,7 @@ namespace BaoCaoTienAn.Controllers
         [HttpPost]
         public async Task<IActionResult> PrintMealMoney([FromForm] Guid schoolId, [FromForm] DateTime startDate, [FromForm] DateTime endDate)
         {
+            ViewData["Root"] = "Báo cáo";
             var report = await _unitOfWork.Report.ReportMealMoney(schoolId, startDate, endDate);
             return View(report);
         }
@@ -70,6 +72,7 @@ namespace BaoCaoTienAn.Controllers
         [ActionName("TienAn")]
         public IActionResult TienAn()
         {
+            ViewData["Root"] = "Báo cáo";
             ReportMealMoneyViewModel reportMealMoneyView = new();
             return View(reportMealMoneyView);
         }

@@ -11,17 +11,23 @@
     <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/cr-1.7.0/r-2.5.0/datatables.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
-<body class="overflow-hidden bg-body-secondary vh-100 vw-100">
+<body class="overflow-hidden vh-100 vw-100 bg-body-secondary">
     <partial name="_ResultToastPartial" />
     <partial name="_ConfirmModalPartial" />
-    <div class="d-flex flex-column p-3 h-100 w-100 gap-2">
+    <div class="d-flex flex-column p-3 h-100 w-100 gap-1">
         <nav class="navbar navbar-expand-md bg-white rounded py-1">
             <div class="container-fluid">
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 align-items-center fw-bold">
+                    <div class="d-flex justify-content-center align-items-center m-2">
+                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                            <img src="/resources/logo1.png" alt="Logo" width="95" />
+                        </a>
+                    </div>
+
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 align-items-center fw-bold" style="font-size:14px;">
                         <li class="nav-item dropdown">
                             <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-building-fill fs-5"></i>
+                                <i class="bi bi-building-fill"></i>
                                 Hệ thống
                             </a>
                             <ul class="dropdown-menu">
@@ -30,11 +36,10 @@
                             </ul>
                         </li>
 
-                        <li><hr style="width:1px;height:20px;" /></li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-menu-button-fill fs-5"></i>
+                                <i class="bi bi-menu-button-fill"></i>
                                 Danh mục
                             </a>
                             <ul class="dropdown-menu">
@@ -43,11 +48,9 @@
                             </ul>
                         </li>
 
-                        <li><hr style="width:1px;height:20px;" /></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-table fs-5"></i>
+                                <i class="bi bi-table"></i>
                                 Quản lý
                             </a>
                             <ul class="dropdown-menu">
@@ -56,11 +59,9 @@
                             </ul>
                         </li>
 
-                        <li><hr style="width:1px;height:20px;" /></li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-graph-up fs-5"></i>
+                                <i class="bi bi-graph-up"></i>
                                 Báo cáo
                             </a>
                             <ul class="dropdown-menu">
@@ -71,30 +72,35 @@
                     </ul>
                 </div>
                 <div class="d-flex gap-1 align-items-center">
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Tìm kiếm">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                    </div>
                     <partial name="_NotificationDropDownPartial" />
                     <hr style="width:1px;height:20px;" />
                     <partial name="_UserDropDownPartial" />
                 </div>
             </div>
         </nav>
-        <div class="d-flex h-100">
-            <div class="d-flex flex-column bg-white h-100 rounded shadow-sm me-2" style="min-width:250px;">
-                <div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
-                    <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                        <img src="/resources/logo1.png" alt="Logo" width="120" height="60" />
-                    </a>
-                </div>
+        <div class="d-flex h-100 gap-1 overflow-hidden">
+            <div class="d-flex flex-column bg-white h-100 rounded shadow-sm" style="min-width:250px;">
+                @*<div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
+                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+                <img src="/resources/logo1.png" alt="Logo" width="120" height="60" />
+                </a>
+                </div>*@
                 <partial name="_SidebarMenuPartial" />
                 <small class="opacity-50 text-center user-select-none" style="font-size:12px;">© Kidsoft</small>
             </div>
 
-            <div class="d-flex flex-column w-100 h-100 gap-2">
-                <header class="d-flex justify-content-between align-items-center rounded px-3 bg-white py-2">
-                    <span class="flex-column d-none d-sm-flex">
-                        <b class="fs-4">@ViewData["Title"]</b>
-                        <small class="opacity-75">@ViewData["Description"]</small>
-                    </span>
-
+            <div class="d-flex flex-column w-100 h-100 gap-1 overflow-hidden">
+                <header class="d-flex justify-content-between align-items-center rounded p-3 bg-white">
+                    <nav style="--bs-breadcrumb-divider: '/';" aria-label="breadcrumb">
+                        <ol class="breadcrumb m-0">
+                            <li class="breadcrumb-item">@ViewData["Root"]</li>
+                            <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                        </ol>
+                    </nav>
                 </header>
                 <div class="d-flex rounded shadow-sm bg-white w-100 h-100 position-relative overflow-hidden">
                     <partial name="_LoadingPartial" />
