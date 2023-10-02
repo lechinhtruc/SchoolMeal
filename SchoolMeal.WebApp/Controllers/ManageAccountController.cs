@@ -12,6 +12,9 @@ namespace SchoolMeal.WebApp.Controllers
     public class ManageAccountController : BaseController
     {
         private readonly IUnitOfWork _unitOfWork;
+
+        private readonly string RootName = "Quản lí";
+
         public ManageAccountController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -29,14 +32,14 @@ namespace SchoolMeal.WebApp.Controllers
 
         public async Task<IActionResult> TaiKhoan()
         {
-            ViewData["Root"] = "Quản lí";
+            ViewData["Root"] = RootName;
             var accounts = await _unitOfWork.ManageAccounts.GetAllAccount();
             return View(accounts);
         }
 
         public async Task<IActionResult> LichSuHoatDong()
         {
-            ViewData["Root"] = "Quản lí";
+            ViewData["Root"] = RootName;
             return View(await _unitOfWork.UserLog.GetAll());
         }
 

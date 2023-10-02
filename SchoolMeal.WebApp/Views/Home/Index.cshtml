@@ -4,7 +4,7 @@
     ViewData["Description"] = "Chào mừng " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
 }
 <div class="d-flex flex-column p-2 gap-2 w-100 h-100">
-    <div class="d-flex flex-column w-100 gap-1 p-2 overflow-auto">
+    <div class="d-flex flex-column gap-1 p-2 overflow-auto">
         <div class="d-flex gap-2 justify-content-between align-items-center">
             <span class="fw-bold fs-4 me-2">Lối tắt</span>
             <button class="btn btn-success">
@@ -12,16 +12,16 @@
                 Thêm mới
             </button>
         </div>
-        <div class="d-flex gap-2 w-100 py-2">
-            <a style="min-width:13%;height:150px;" class="bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="TienAn" asp-controller="NurturingManagementReport">
+        <div class="d-flex gap-2 py-2">
+            <a style="width:200px;height:150px;" class="bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="TienAn" asp-controller="NurturingManagementReport">
                 <img src="/resources/profits.png" alt="Tiền ăn" width="75">
                 <span class="fw-bold text-black text-center text-truncate w-100">Báo cáo tiền ăn</span>
             </a>
-            <a style="min-width:13%;height:150px;" class="bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="ThongTin" asp-controller="Account">
+            <a style="width:200px;height:150px;" class="bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="ThongTin" asp-controller="Account">
                 <img src="/resources/id.png" width="75">
                 <span class="fw-bold text-black text-center text-truncate w-100">Thông tin</span>
             </a>
-            <a style="min-width:13%;height:150px;" class="bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="DoiMatKhau" asp-controller="Account">
+            <a style="width:200px;height:150px;" class="bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="DoiMatKhau" asp-controller="Account">
                 <img src="/resources/reset-password.png" width="75">
                 <span class="fw-bold text-black text-center text-truncate w-100">Đổi mật khẩu</span>
             </a>

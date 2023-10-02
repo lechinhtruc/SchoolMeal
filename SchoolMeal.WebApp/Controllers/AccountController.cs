@@ -10,6 +10,9 @@ namespace BaoCaoTienAn.Controllers
     public class AccountController : BaseController
     {
         private readonly IUnitOfWork _unitOfWork;
+
+        private readonly string RootName = "Tài khoản";
+
         public AccountController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -30,13 +33,13 @@ namespace BaoCaoTienAn.Controllers
                 CreatedAt = CreatedAt,
                 ExpiredAt = ExpiredAt,
             };
-            ViewData["Root"] = "Tài khoản";
+            ViewData["Root"] = RootName;
             return View(infomation);
         }
 
         public IActionResult DoiMatKhau()
         {
-            ViewData["Root"] = "Tài khoản";
+            ViewData["Root"] = RootName;
             return View();
         }
 
@@ -59,7 +62,7 @@ namespace BaoCaoTienAn.Controllers
                     ModelState.AddModelError("OldPassword", "Mật khẩu cũ không chính xác!");
                 }
             }
-            ViewData["Root"] = "Tài khoản";
+            ViewData["Root"] = RootName;
             return View("DoiMatKhau");
         }
 

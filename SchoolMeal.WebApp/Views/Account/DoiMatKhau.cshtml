@@ -6,31 +6,33 @@
     ViewData["Title"] = "Đổi mật khẩu";
     ViewData["Description"] = "Đổi mật khẩu cho tài khoản " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
 }
-<div class="d-flex flex-column w-100 align-items-center justify-content-center">
-    <div class="d-flex flex-column align-items-center mb-3">
-        <div class="d-flex align-items-center justify-content-center rounded-pill border text-bg-success" style="width:80px;height:80px;">
-            <i class="bi bi-key-fill fs-1"></i>
+<div class="d-flex flex-column w-100 h-100 justify-content-center">
+    <div class="d-flex flex-column w-100 overflow-auto align-items-center py-3">
+        <div class="d-flex flex-column align-items-center mb-3">
+            <div class="d-flex align-items-center justify-content-center rounded-pill border text-bg-success" style="width:80px;height:80px;">
+                <i class="bi bi-key-fill fs-1"></i>
+            </div>
+            <span class="fw-bold text-uppercase my-3 fs-5">Thay đổi mật khẩu</span>
         </div>
-        <span class="fw-bold text-uppercase my-3 fs-5">Thay đổi mật khẩu</span>
+        <form class="d-flex flex-column gap-2 w-50" method="post" asp-action="DoiMatKhau" asp-controller="Account">
+            <div class="form-floating">
+                <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" asp-for="OldPassword">
+                <label for="oldPassword">Mật khẩu cũ</label>
+                <span asp-validation-for="OldPassword" class="text-danger"></span>
+            </div>
+            <div class="form-floating">
+                <input type="password" class="form-control" id="newPassword" placeholder="New Password" asp-for="NewPassword">
+                <label for="newPassword">Mật khẩu mới</label>
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+
+            </div>
+            <div class="form-floating w-100">
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" asp-for="ConfirmPassword">
+                <label for="confirmPassword">Nhập lại mật khẩu mới</label>
+                <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+
+            </div>
+            <button type="submit" class="btn btn-success mt-3">Đổi mật khẩu</button>
+        </form>
     </div>
-    <form class="d-flex flex-column gap-2" style="width:500px;" method="post" asp-action="DoiMatKhau" asp-controller="Account">
-        <div class="form-floating">
-            <input type="password" class="form-control" id="oldPassword" placeholder="Old Password" asp-for="OldPassword">
-            <label for="oldPassword">Mật khẩu cũ</label>
-            <span asp-validation-for="OldPassword" class="text-danger"></span>
-        </div>
-        <div class="form-floating">
-            <input type="password" class="form-control" id="newPassword" placeholder="New Password" asp-for="NewPassword">
-            <label for="newPassword">Mật khẩu mới</label>
-            <span asp-validation-for="NewPassword" class="text-danger"></span>
-
-        </div>
-        <div class="form-floating w-100">
-            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm New Password" asp-for="ConfirmPassword">
-            <label for="confirmPassword">Nhập lại mật khẩu mới</label>
-            <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
-
-        </div>
-        <button type="submit" class="btn btn-success mt-3">Đổi mật khẩu</button>
-    </form>
 </div>

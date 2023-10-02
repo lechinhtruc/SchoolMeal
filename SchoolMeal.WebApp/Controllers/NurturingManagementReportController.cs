@@ -10,6 +10,8 @@ namespace BaoCaoTienAn.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
 
+        private readonly string RootName = "Báo cáo";
+
         public NurturingManagementReportController(IUnitOfWork unitOfWork) : base(unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -22,7 +24,7 @@ namespace BaoCaoTienAn.Controllers
         {
             try
             {
-                ViewData["Root"] = "Báo cáo";
+                ViewData["Root"] = RootName;
                 ViewData["Reports"] = await _unitOfWork.Report.ReportMealMoney(schoolId, startDate, endDate);
                 return View("TienAn");
             }
@@ -35,7 +37,7 @@ namespace BaoCaoTienAn.Controllers
         [HttpPost]
         public async Task<IActionResult> PrintMealMoney([FromForm] Guid schoolId, [FromForm] DateTime startDate, [FromForm] DateTime endDate)
         {
-            ViewData["Root"] = "Báo cáo";
+            ViewData["Root"] = RootName;
             var report = await _unitOfWork.Report.ReportMealMoney(schoolId, startDate, endDate);
             return View(report);
         }
@@ -72,7 +74,7 @@ namespace BaoCaoTienAn.Controllers
         [ActionName("TienAn")]
         public IActionResult TienAn()
         {
-            ViewData["Root"] = "Báo cáo";
+            ViewData["Root"] = RootName;
             ReportMealMoneyViewModel reportMealMoneyView = new();
             return View(reportMealMoneyView);
         }
