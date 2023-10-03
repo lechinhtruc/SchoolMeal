@@ -6,22 +6,30 @@
 
 @model IEnumerable<AccountModel>
 
-<div class="d-flex flex-column w-100 px-3 overflow-auto">
-    <div class="d-flex mt-3">
-        <button class="btn btn-success d-flex align-items-center gap-2 create-user-btn">
-            <i class="bi bi-person-fill-add fs-5"></i>
-            Tạo người dùng mới
-        </button>
+<div class="d-flex flex-column w-100 p-3 gap-2 overflow-auto">
+    <div class="d-flex justify-content-between align-items-center">
+        <span class="fw-bold fs-4">@ViewData["Title"]</span>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary" onclick="location.reload();">
+                <i class="bi bi-arrow-clockwise"></i>
+                Làm mới
+            </button>
+            <button class="btn btn-success d-flex align-items-center gap-2 create-user-btn">
+                <i class="bi bi-person-fill-add"></i>
+                Tạo mới
+            </button>
+        </div>
     </div>
+
     <table id="dtHistoryLog" class="table table-striped table-hover table-bordered" width="100%">
         <thead class="table-light">
             <tr>
-                <th scope="col">Tên người dùng</th>
-                <th scope="col">Số điện thoại</th>
-                <th scope="col">Ngày tạo</th>
-                <th scope="col">Ngày hết hạn</th>
-                <th scope="col">Quyền hạn</th>
-                <th scope="col" style="width:12%;">Hành động</th>
+                <th scope="col" width="15%">Tên người dùng</th>
+                <th scope="col" width="15%">Số điện thoại</th>
+                <th scope="col" width="15%">Ngày tạo</th>
+                <th scope="col" width="15%">Ngày hết hạn</th>
+                <th scope="col" width="10%">Quyền hạn</th>
+                <th scope="col" style="width:15%;">Hành động</th>
             </tr>
         </thead>
         <tbody>

@@ -15,73 +15,7 @@
     <partial name="_ResultToastPartial" />
     <partial name="_ConfirmModalPartial" />
     <div class="d-flex flex-column p-3 h-100 w-100 gap-1">
-        <nav class="navbar navbar-expand-md bg-white rounded py-1">
-            <div class="container-fluid">
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <div class="d-flex justify-content-center align-items-center m-2">
-                        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                            <img src="/resources/logo1.png" alt="Logo" width="95" />
-                        </a>
-                    </div>
-
-                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 align-items-center fw-bold" style="font-size:14px;">
-                        <li class="nav-item dropdown">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-building-fill"></i>
-                                Hệ thống
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Hệ thống 1</a></li>
-                                <li><a class="dropdown-item" href="#">Hệ thống 2</a></li>
-                            </ul>
-                        </li>
-
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-menu-button-fill"></i>
-                                Danh mục
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Danh mục 1</a></li>
-                                <li><a class="dropdown-item" href="#">Danh mục 2</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-table"></i>
-                                Quản lý
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Quản lý 1</a></li>
-                                <li><a class="dropdown-item" href="#">Quản lý 2</a></li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown">
-                            <a class="nav-link d-flex align-items-center gap-2" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-graph-up"></i>
-                                Báo cáo
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Báo cáo 1</a></li>
-                                <li><a class="dropdown-item" href="#">Báo cáo 2</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-                <div class="d-flex gap-1 align-items-center">
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="floatingInputGroup1" placeholder="Tìm kiếm">
-                        <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    </div>
-                    <partial name="_NotificationDropDownPartial" />
-                    <hr style="width:1px;height:20px;" />
-                    <partial name="_UserDropDownPartial" />
-                </div>
-            </div>
-        </nav>
+        <partial name="_NavbarPartial"/>
         <div class="d-flex h-100 gap-1 overflow-hidden">
             <div class="d-flex flex-column bg-white h-100 rounded shadow-sm" style="min-width:250px;">
                 @*<div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
@@ -128,7 +62,7 @@
                     url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json'
                 },
                 colReorder: true,
-                dom: '<"mt-3"<"row mb-3"<"col"l><"col"f>>rt<"row my-3"<"col"i><"col"p>>>'
+                dom: '<<"row mb-3"<"col"l><"col"f>>rt<"row my-3"<"col"i><"col"p>>>'
             });
         })
     </script>

@@ -8,22 +8,43 @@
 }
 @model ReportMealMoneyViewModel;
 
-<div class="d-flex flex-column w-100 px-3">
+<div class="d-flex flex-column w-100 p-3">
+    <div class="d-flex justify-content-between align-items-center">
+        <span class="fw-bold fs-4">@ViewData["Title"]</span>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary" onclick="location.reload();">
+                <i class="bi bi-arrow-clockwise"></i>
+                Làm mới
+            </button>
+        </div>
+    </div>
     <form class="row gx-3 gy-2 mb-2 border-bottom py-3" method="post" asp-action="TienAn"
           asp-controller="NurturingManagementReport">
         <div class="d-flex flex-column col-6">
-            <label for="school-id" class="text-nowrap mb-1">Mã trường</label>
-            <input type="text" class="form-control" id="school-id" asp-for="SchoolId">
+            <div class="form-floating">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Mã trường" asp-for="SchoolId">
+                <label for="floatingInput">Mã trường</label>
+            </div>
+            @*<label for="school-id" class="text-nowrap mb-1">Mã trường</label>*@
+            @*<input type="text" class="form-control" id="school-id" asp-for="SchoolId">*@
             <span asp-validation-for="SchoolId" class="text-danger"></span>
         </div>
         <div class="d-flex flex-column col-3">
-            <label for="start-date-input" class="text-nowrap mb-1">Từ ngày</label>
-            <input type="date" class="form-control" id="start-date-input" asp-for="StartDate">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="floatingInput" placeholder="Từ ngày" asp-for="StartDate">
+                <label for="floatingInput">Từ ngày</label>
+            </div>
+            @*<label for="start-date-input" class="text-nowrap mb-1">Từ ngày</label>
+            <input type="date" class="form-control" id="start-date-input" asp-for="StartDate">*@
             <span asp-validation-for="StartDate" class="text-danger"></span>
         </div>
         <div class="d-flex flex-column col-3">
-            <label for="end-date-input" class="text-nowrap mb-1">Đến ngày</label>
-            <input type="date" class="form-control" id="end-date-input" asp-for="EndDate">
+            <div class="form-floating">
+                <input type="date" class="form-control" id="floatingInput" placeholder="Đến ngày" asp-for="EndDate">
+                <label for="floatingInput">Đến ngày</label>
+            </div>
+           @* <label for="end-date-input" class="text-nowrap mb-1">Đến ngày</label>
+            <input type="date" class="form-control" id="end-date-input" asp-for="EndDate">*@
             <span asp-validation-for="EndDate" class="text-danger"></span>
         </div>
         <div class="d-flex align-self-end gap-2 mt-3">
