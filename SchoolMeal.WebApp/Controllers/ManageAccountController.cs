@@ -43,6 +43,12 @@ namespace SchoolMeal.WebApp.Controllers
             return View(await _unitOfWork.UserLog.GetAll());
         }
 
+        public async Task<IActionResult> XoaLichSuHoatDong()
+        {
+            await _unitOfWork.UserLog.Clear();
+            return RedirectToAction("LichSuHoatDong");
+        }
+
         [HttpGet]
         public async Task<IActionResult> ShowUpdateAccountModal(int Id)
         {

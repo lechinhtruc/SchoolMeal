@@ -6,5 +6,6 @@ namespace DataAccess.Interfaces
     {
         public HistoryLogModel AddLog(HistoryLogModel historyLog);
         public Task<IEnumerable<HistoryLogModel>> GetAll();
+        public Task Clear();
     }
 }

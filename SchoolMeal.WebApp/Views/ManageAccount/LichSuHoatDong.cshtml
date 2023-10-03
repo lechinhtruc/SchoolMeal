@@ -6,7 +6,21 @@
 
 @model IEnumerable<HistoryLogModel>
 
-<div class="d-flex flex-column w-100 px-3 overflow-auto">
+<div class="d-flex flex-column w-100 p-3 gap-2 overflow-auto">
+    <div class="d-flex justify-content-between align-items-center">
+        <span class="fw-bold fs-4">@ViewData["Title"]</span>
+        <div class="d-flex gap-2">
+            <button class="btn btn-primary" onclick="location.reload();">
+                <i class="bi bi-arrow-clockwise"></i>
+                Làm mới
+            </button>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#clearLogConfirmModal">
+                <i class="bi bi-trash-fill"></i>
+                Xoá Log
+            </button>
+        </div>
+
+    </div>
     <table id="dtHistoryLog" class="table table-striped table-hover table-bordered" width="100%">
         <thead class="table-light">
             <tr>
@@ -31,4 +45,23 @@
                 }
         </tbody>
     </table>
+    <div class="modal fade" id="clearLogConfirmModal" data-bs-backdrop="static" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <form asp-action="XoaLichSuHoatDong" asp-controller="ManageAccount" method="post">
+                    <input hidden id="userId" name="Id" />
+                    <div class="modal-header">
+                        <h5 class="modal-title">Xoá lịch sử hoạt động</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p>Bạn có chắc chắn muốn xoá sạch lịch sử hoạt động?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                        <button type="submit" class="btn btn-danger">Xoá</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
