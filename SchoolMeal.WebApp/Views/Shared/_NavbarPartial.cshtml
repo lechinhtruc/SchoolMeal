@@ -48,7 +48,7 @@
                         Báo cáo
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Báo cáo 1</a></li>
+                        <li><a class="dropdown-item" asp-action="TienAn" asp-controller="NurturingManagementReport">Tiền ăn</a></li>
                         <li><a class="dropdown-item" href="#">Báo cáo 2</a></li>
                     </ul>
                 </li>
@@ -56,7 +56,7 @@
         </div>
         <div class="d-flex gap-1 align-items-center">
             <div class="input-group">
-                <button type="button" class="form-control text-start" style="width:200px;">Tìm kiếm</button>
+                <button type="button" class="form-control text-start" style="width:200px;" data-bs-toggle="modal" data-bs-target="#searchModal">Tìm kiếm</button>
                 <span class="input-group-text"><i class="bi bi-search"></i></span>
             </div>
             <partial name="_NotificationDropDownPartial" />
