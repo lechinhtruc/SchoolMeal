@@ -5,22 +5,25 @@
                 <h1 class="modal-title fs-5" id="searchModalLabel">Tìm kiếm</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-body">
-                <div class="input-group mb-2">
-                    <span class="input-group-text"><i class="bi bi-search"></i></span>
-                    <div class="form-floating">
-                        <input type="text" class="form-control" id="searchString" placeholder="Từ khoá">
-                        <label for="searchString">Nhập từ khoá</label>
+            <form asp-action="Index" asp-controller="Search" method="get">
+                <div class="modal-body">
+                    <div class="input-group mb-2">
+                        <span class="input-group-text"><i class="bi bi-search"></i></span>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" id="searchString" placeholder="Từ khoá" name="searchString">
+                            <label for="searchString">Nhập từ khoá</label>
+                        </div>
                     </div>
-                </div>
-                @*<div class="text-center">
+                    @*<div class="text-center">
                     <span class="text-black-50">Không có kết quả nào</span>
-                </div>*@
+                    </div>*@
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Tìm kiếm</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                </div>
+            </form>
+
         </div>
     </div>
 </div>

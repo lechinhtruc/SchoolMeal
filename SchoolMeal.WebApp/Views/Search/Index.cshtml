@@ -1,0 +1,73 @@
+﻿@using DataAccess.Models;
+@model SearchResultModal;
+@{
+    ViewData["Title"] = "Tìm kiếm chung";
+}
+
+<div class="d-flex flex-column p-2 gap-2 w-100 h-100 user-select-none">
+    <div class="d-flex flex-column gap-1 p-2 overflow-y-auto overflow-x-hidden">
+
+        @* Danh sách tài khoản *@
+        <div class="d-flex flex-column gap-1">
+            <div class="d-flex gap-2 justify-content-between align-items-center">
+                <span class="fw-bold fs-4">Tài khoản tìm thấy (@Model.Accounts?.Count())</span>
+            </div>
+            <table class="table table-striped table-hover table-bordered " width="100%">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Tên người dùng</th>
+                        <th scope="col">Số điện thoại</th>
+                        <th scope="col">Ngày tạo</th>
+                        <th scope="col">Ngày hết hạn</th>
+                        <th scope="col">Quyền hạn</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (@Model.Accounts?.Count() > 0)
+                        @foreach (var user in Model.Accounts)
+                        {
+                            <tr class="align-middle">
+                                <td>@user.Username</td>
+                                <td>@user.PhoneNumber</td>
+                                <td>@user.CreatedAt.ToString("d")</td>
+                                <td>@user.ExpiredAt.ToString("d")</td>
+                                <td>@user.Role</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+
+        @* Danh sách lịch sử hoạt động *@
+        <div class="d-flex flex-column gap-1">
+            <div class="d-flex gap-2 justify-content-between align-items-center">
+                <span class="fw-bold fs-4">Nhật ký tìm thấy (@Model.HistoryLog?.Count())</span>
+            </div>
+            <table class="table table-striped table-hover table-bordered" width="100%">
+                <thead class="table-light">
+                    <tr>
+                        <th scope="col">Thời gian</th>
+                        <th scope="col">Người dùng</th>
+                        <th scope="col" width="12%">Action</th>
+                        <th scope="col" width="12%">Controller</th>
+                        <th scope="col">Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (@Model.HistoryLog?.Count() > 0)
+                        @foreach (var log in Model.HistoryLog)
+                        {
+                            <tr>
+                                <td>@log.DateTime.ToString("G")</td>
+                                <td>@log.Username</td>
+                                <td>@log.Action</td>
+                                <td>@log.Controller</td>
+                                <td>@log.Description</td>
+                            </tr>
+                        }
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

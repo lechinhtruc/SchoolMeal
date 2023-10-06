@@ -15,6 +15,7 @@ builder.Services.AddScoped<IAuthRepositories, AuthRepositories>();
 builder.Services.AddScoped<IAccountRepositories, AccountRepositories>();
 builder.Services.AddScoped<IUserLog, UserLogRepositories>();
 builder.Services.AddScoped<IManageAccountsRepositories, ManageAccountsRepositories>();
+builder.Services.AddScoped<ISearchRepositores, SearchRepositores>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(

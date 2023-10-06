@@ -17,7 +17,7 @@
     <partial name="_SearchModalPartial" />
 
     <div class="d-flex flex-column p-3 h-100 w-100 gap-1">
-        <partial name="_NavbarPartial"/>
+        <partial name="_NavbarPartial" />
         <div class="d-flex h-100 gap-1 overflow-hidden">
             <div class="d-flex flex-column bg-white h-100 rounded shadow-sm" style="min-width:250px;">
                 @*<div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
@@ -59,15 +59,18 @@
     </script>
     <script type="text/javascript">
         $(document).ready(() => {
-            $("#dtHistoryLog").DataTable({
+            $(".table").DataTable({
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json'
-                },
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json'},
                 colReorder: true,
                 dom: '<<"row mb-3"<"col"l><"col"f>>rt<"row my-3"<"col"i><"col"p>>>'
             });
+            $('#searchModal').on('shown.bs.modal', () => {
+                $('#searchString').focus();
+            })
         })
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

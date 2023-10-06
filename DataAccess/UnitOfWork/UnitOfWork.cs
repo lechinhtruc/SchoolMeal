@@ -17,12 +17,15 @@ namespace DataAccess.UnitOfWork
 
         public IManageAccountsRepositories ManageAccounts { get; }
 
+        public ISearchRepositores Search { get; }
+
         public UnitOfWork(ApplicationDbContext db,
             IReportRepositories report,
             IAuthRepositories auth,
             IAccountRepositories account,
             IUserLog userLog,
-            IManageAccountsRepositories manageAccounts
+            IManageAccountsRepositories manageAccounts,
+            ISearchRepositores search
             )
         {
             _db = db;
@@ -31,6 +34,7 @@ namespace DataAccess.UnitOfWork
             Account = account;
             UserLog = userLog;
             ManageAccounts = manageAccounts;
+            Search = search;
         }
     }
 }

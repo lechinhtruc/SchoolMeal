@@ -73,8 +73,8 @@
         </div>
     </form>
 
-    <div class="overflow-auto my-2">
-        <table class="table table-hover table-bordered" id="report-table">
+    <div class="overflow-y-atuo overflow-x-hidden mt-2">
+        <table class="table table-hover table-bordered">
             <thead class="table-light position-sticky top-0">
                 <tr>
                     <th scope="col">Ngày</th>
@@ -97,14 +97,6 @@
                             <td>@report.PhuPhi.ToString("N0", new CultureInfo("vi-VN"))</td>
                         </tr>
                     }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="5" class="text-center">
-                            <span class="opacity-75 text-center" id="null-text">Không có dữ liệu</span>
-                        </td>
-                    </tr>
                 }
             </tbody>
         </table>

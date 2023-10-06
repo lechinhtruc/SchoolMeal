@@ -7,5 +7,6 @@
         IAccountRepositories Account { get; }
         IUserLog UserLog { get; }
         IManageAccountsRepositories ManageAccounts { get; }
+        ISearchRepositores Search { get; } 
     }
 }
