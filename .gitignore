@@ -361,5 +361,4 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/SchoolMeal.WebApp/appsettings.Development.json
 /SchoolMeal.WebApp/appsettings.json
