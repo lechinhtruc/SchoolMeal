@@ -22,8 +22,5 @@ namespace SchoolMeal.WebApp.ViewModels
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiredAt { get; set; }
 
-        [Required(ErrorMessage = "Hãy nhập quyền của người dùng!")]
-        public IEnumerable<AccountRoles>? Roles { get; set; }
-
     }
 }

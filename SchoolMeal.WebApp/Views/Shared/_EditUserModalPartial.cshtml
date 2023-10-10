@@ -1,4 +1,8 @@
-﻿@using SchoolMeal.WebApp.ViewModels;
+﻿@using DataAccess.Models;
+@using SchoolMeal.WebApp.ViewModels;
+@{
+    var RolesList = ViewData["RolesList"] as List<RoleModel>;
+}
 
 @model EditUserViewModel;
 
@@ -30,26 +34,14 @@
                         <button type="button" class="form-select text-start py-0" id="Roles" data-bs-toggle="collapse" data-bs-target="#collapseRoles" aria-expanded="false">Chỉnh sửa quyền hạn</button>
                         <div class="collapse mt-2" id="collapseRoles">
                             <div class="card card-body" style="max-height:150px;overflow-y: auto;">
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckManageAccount" @(Model.Roles?.FirstOrDefault(account => account.ActionName == "ManageAccount") != null ? "checked" : null)>
-                                    <label class="form-check-label" for="switchCheckManageAccount">Quản lí tài khoản</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckHistoryLog" @(Model.Roles?.FirstOrDefault(account => account.ActionName == "HistoryLog") != null ? "checked" : null)>
-                                    <label class="form-check-label" for="switchCheckHistoryLog">Tra cứu lịch sử hoạt động</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckInfomation" @(Model.Roles?.FirstOrDefault(account => account.ActionName == "AccountInfomation") != null ? "checked" : null)>
-                                    <label class="form-check-label" for="switchCheckInfomation">Xem thông tin tài khoản</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckChangePassword" @(Model.Roles?.FirstOrDefault(account => account.ActionName == "ChangePassword") != null ? "checked" : null)>
-                                    <label class="form-check-label" for="switchCheckChangePassword">Đổi mật khẩu</label>
-                                </div>
-                                <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="switchCheckMealMoneyReport" @(Model.Roles?.FirstOrDefault(account => account.ActionName == "MealMoneyReport") != null ? "checked" : null)>
-                                    <label class="form-check-label" for="switchCheckMealMoneyReport">Báo cáo tiền ăn</label>
-                                </div>
+                                @for (var i = 0; i < RolesList!.Count; i++)
+                                {
+                                    <div class="form-check form-switch">
+                                        <input class="form-check-input" asp-for="@RolesList[i].IsChecked" type="checkbox" role="switch" id="switchCheck{@RolesList[i].ActionName}">
+                                        <label class="form-check-label" for="switchCheck{@RolesList[i].ActionName}">@RolesList[i].DisplayString</label>
+                                        <input type="hidden" asp-for="@RolesList[i].ActionName">
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>

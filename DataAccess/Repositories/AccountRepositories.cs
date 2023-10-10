@@ -56,13 +56,19 @@ namespace DataAccess.Repositories
             return infomation ?? new AccountModel();
         }
 
-        public async Task<AccountModel> UpdateAccount(AccountModel account)
+        public async Task<AccountModel> UpdateAccount(AccountModel account, List<RoleModel> rolesList)
         {
-            if (!IsExitsAccount(account.Username))
+            await _db.Tbl_AccountRoles.Where(x => x.AccountId == account.Id).ExecuteDeleteAsync();
+            rolesList.ForEach(async rolesList =>
             {
-                _db.Tbl_Account.Update(account);
-                await _db.SaveChangesAsync();
-            }
+                if (rolesList.IsChecked) await _db.Tbl_AccountRoles.AddAsync(new AccountRoles()
+                {
+                    AccountId = account.Id,
+                    ActionName = rolesList.ActionName
+                });
+            });
+            _db.Tbl_Account.Update(account);
+            await _db.SaveChangesAsync();
             return account;
         }
 

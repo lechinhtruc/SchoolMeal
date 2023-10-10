@@ -12,6 +12,6 @@ namespace DataAccess.Interfaces
 
         public Task<IEnumerable<AccountRoles>> GetAccountRoles(int AccountId);
 
-        public Task<AccountModel> UpdateAccount(AccountModel account);
+        public Task<AccountModel> UpdateAccount(AccountModel account, List<RoleModel> rolesList);
     }
 }

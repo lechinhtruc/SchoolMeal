@@ -4,6 +4,7 @@ using DataAccess.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolMeal.WebApp.ViewModels;
+using System.Collections.Generic;
 
 namespace SchoolMeal.WebApp.Controllers
 {
@@ -54,14 +55,22 @@ namespace SchoolMeal.WebApp.Controllers
         {
             var account = await _unitOfWork.Account.GetAccountInfomation(Id);
             var roles = await _unitOfWork.Account.GetAccountRoles(Id);
+            List<RoleModel> roleList = new()
+            {
+                new RoleModel { DisplayString="Quản lí tài khoản", ActionName = "ManageAccount", IsChecked = roles.Any(x => x.ActionName == "ManageAccount" ) },
+                new RoleModel { DisplayString="Tra cứu lịch sử hoạt động", ActionName = "HistoryLog", IsChecked = roles.Any(x => x.ActionName == "HistoryLog" ) },
+                new RoleModel { DisplayString="Xem thông tin tài khoản", ActionName = "Infomation", IsChecked = roles.Any(x => x.ActionName == "Infomation" ) },
+                new RoleModel { DisplayString="Đổi mật khẩu", ActionName = "ChangePassword", IsChecked = roles.Any(x => x.ActionName == "ChangePassword" ) },
+                new RoleModel { DisplayString="Báo cáo tiền ăn", ActionName = "MealMoneyReport", IsChecked = roles.Any(x => x.ActionName == "MealMoneyReport" ) },
+            };
             EditUserViewModel editUser = new()
             {
                 Id = account.Id,
                 Username = account.Username,
                 PhoneNumber = account.PhoneNumber,
                 ExpiredAt = account.ExpiredAt,
-                Roles= roles,
             };
+            ViewData["RolesList"] = roleList;
             return PartialView("_EditUserModalPartial", editUser);
         }
 
@@ -72,7 +81,7 @@ namespace SchoolMeal.WebApp.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateAccount(EditUserViewModel editUser)
+        public async Task<IActionResult> UpdateAccount(EditUserViewModel editUser, List<RoleModel> rolesList)
         {
             if (ModelState.IsValid)
             {
@@ -80,7 +89,7 @@ namespace SchoolMeal.WebApp.Controllers
                 account.Username = editUser.Username;
                 account.PhoneNumber = editUser.PhoneNumber;
                 account.ExpiredAt = editUser.ExpiredAt;
-                await _unitOfWork.Account.UpdateAccount(account);
+                await _unitOfWork.Account.UpdateAccount(account, rolesList);
             }
             return RedirectToAction("TaiKhoan");
         }

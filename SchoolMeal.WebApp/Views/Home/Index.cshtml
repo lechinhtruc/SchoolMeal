@@ -33,8 +33,8 @@
 
 
         @* Menu quản trị dành cho admin *@
-        @if (User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin")
-        {
+     @*    @if (User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin")
+        { *@
             <div class="d-flex flex-column gap-1">
                 <div class="d-flex gap-2 justify-content-between align-items-center">
                     <span class="fw-bold fs-4 me-2">Quản trị</span>
@@ -50,6 +50,6 @@
                     </a>
                 </div>
             </div>
-        }
+        @* } *@
     </div>
 </div>
