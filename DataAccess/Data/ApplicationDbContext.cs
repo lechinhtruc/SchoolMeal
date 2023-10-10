@@ -12,5 +12,6 @@ namespace DataAccess.Data
         public DbSet<SchoolRecord> Tbl_Mealmoney { get; set; }
         public DbSet<AccountModel> Tbl_Account { get; set; }
         public DbSet<HistoryLogModel> Tbl_HistoryLog { get; set; }
+        public DbSet<AccountRoles> Tbl_AccountRoles { get; set; }
     }
 }

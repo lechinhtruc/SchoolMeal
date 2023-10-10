@@ -1,7 +1,7 @@
 ﻿@using System.Security.Claims;
 <div class="d-flex flex-column p-2 mt-1 h-100 overflow-auto">
-    @if (User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin")
-    {
+    @*@if (User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin")
+    {*@
         <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseManageAccount">
             <i class="bi bi-person-lines-fill me-1"></i>
             <span class="fw-bold w-100 text-start">Quản lí</span>
@@ -29,7 +29,7 @@
                 <span class="fw-bold">Tạo tài khoản mới</span>
             </a>*@
         </div>
-    }
+    @*}*@
 
 
 

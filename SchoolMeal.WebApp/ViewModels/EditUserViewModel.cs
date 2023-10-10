@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DataAccess.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace SchoolMeal.WebApp.ViewModels
 {
@@ -22,7 +23,7 @@ namespace SchoolMeal.WebApp.ViewModels
         public DateTime ExpiredAt { get; set; }
 
         [Required(ErrorMessage = "Hãy nhập quyền của người dùng!")]
-        public string Role { get; set; } = string.Empty;
+        public IEnumerable<AccountRoles>? Roles { get; set; }
 
     }
 }

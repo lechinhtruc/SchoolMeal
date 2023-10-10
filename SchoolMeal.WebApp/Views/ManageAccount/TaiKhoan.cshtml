@@ -28,7 +28,7 @@
                 <th scope="col" width="15%">Số điện thoại</th>
                 <th scope="col" width="15%">Ngày tạo</th>
                 <th scope="col" width="15%">Ngày hết hạn</th>
-                <th scope="col" width="10%">Quyền hạn</th>
+           @*     <th scope="col" width="10%">Quyền hạn</th>*@
                 <th scope="col" style="width:15%;">Hành động</th>
             </tr>
         </thead>
@@ -41,10 +41,10 @@
                         <td>@user.PhoneNumber</td>
                         <td>@user.CreatedAt.ToString("d")</td>
                         <td>@user.ExpiredAt.ToString("d")</td>
-                        <td>@user.Role</td>
+@*                        <td>@user.Role</td>*@
                         <td class="d-flex gap-1 align-items-center justify-content-center">
                             <button type="button" class="btn btn-success edit-user-btn" edit-user-id="@user.Id"><i class="bi bi-pencil-square"></i> Sửa</button>
-                            <button type="button" class="btn btn-danger delete-user-btn @(user.Role == "Admin" ? "disabled" : null)" delete-user-id=@(user.Role != "Admin" ? user.Id : null)>
+                            <button type="button" class="btn btn-danger delete-user-btn disabled" delete-user-id=@(user.Id)>
                                 <i class="bi bi-person-x-fill"></i>
                                 Xoá
                             </button>

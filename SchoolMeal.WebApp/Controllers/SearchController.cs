@@ -15,6 +15,7 @@ namespace SchoolMeal.WebApp.Controllers
         public async Task<IActionResult> Index(string searchString)
         {
             ViewData["Root"] = "Tìm kiếm";
+            ViewData["SearchString"] = searchString;
             var result = await _unitOfWork.Search.SearchData(searchString);
             return View(result);
         }

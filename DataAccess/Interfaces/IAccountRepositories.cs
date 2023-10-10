@@ -10,6 +10,8 @@ namespace DataAccess.Interfaces
 
         public Task<AccountModel> GetAccountInfomation(int Id);
 
+        public Task<IEnumerable<AccountRoles>> GetAccountRoles(int AccountId);
+
         public Task<AccountModel> UpdateAccount(AccountModel account);
     }
 }

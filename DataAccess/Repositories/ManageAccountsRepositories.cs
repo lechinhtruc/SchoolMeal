@@ -22,7 +22,7 @@ namespace DataAccess.Repositories
         public async Task DeleteAccount(int Id)
         {
             var account = await _db.Tbl_Account.FindAsync(Id);
-            if (account != null && account.Role != "Admin")
+            if (account != null)
             {
                 _db.Tbl_Account.Remove(account);
                 _db.SaveChanges();

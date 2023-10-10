@@ -19,7 +19,7 @@
                         <th scope="col">Số điện thoại</th>
                         <th scope="col">Ngày tạo</th>
                         <th scope="col">Ngày hết hạn</th>
-                        <th scope="col">Quyền hạn</th>
+                        @*<th scope="col">Quyền hạn</th>*@
                     </tr>
                 </thead>
                 <tbody>
@@ -31,7 +31,7 @@
                                 <td>@user.PhoneNumber</td>
                                 <td>@user.CreatedAt.ToString("d")</td>
                                 <td>@user.ExpiredAt.ToString("d")</td>
-                                <td>@user.Role</td>
+                            @*    <td>@user.Role</td>*@
                             </tr>
                         }
                 </tbody>

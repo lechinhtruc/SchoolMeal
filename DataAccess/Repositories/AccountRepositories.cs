@@ -65,5 +65,11 @@ namespace DataAccess.Repositories
             }
             return account;
         }
+
+        public async Task<IEnumerable<AccountRoles>> GetAccountRoles(int AccountId)
+        {
+            var accountRoles = await _db.Tbl_AccountRoles.Where(account => account.AccountId == AccountId).ToListAsync();
+            return accountRoles;
+        }
     }
 }

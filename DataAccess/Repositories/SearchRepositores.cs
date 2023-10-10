@@ -16,19 +16,19 @@ namespace DataAccess.Repositories
         public async Task<SearchResultModal> SearchData(string searchString)
         {
             var accounts = await _db.Tbl_Account.Where(account =>
-            account.Username == searchString ||
-            account.PhoneNumber == searchString ||
-            account.Role == searchString ||
-            account.CreatedAt.ToString() == searchString ||
-            account.ExpiredAt.ToString() == searchString
+            account.Username.Contains(searchString) ||
+            account.PhoneNumber.Contains(searchString) ||
+            //account.Role.Contains(searchString) ||
+            account.CreatedAt.ToString().Contains(searchString) ||
+            account.ExpiredAt.ToString().Contains(searchString)
             ).ToListAsync();
 
             var logs = await _db.Tbl_HistoryLog.Where(log =>
-            log.Username == searchString ||
-            log.Action == searchString ||
-            log.Description == searchString ||
-            log.Controller == searchString ||
-            log.DateTime.ToString() == searchString
+            log.Username.Contains(searchString) ||
+            log.Action.Contains(searchString) ||
+            log.Description.Contains(searchString) ||
+            log.Controller.Contains(searchString) ||
+            log.DateTime.ToString().Contains(searchString)
             ).ToListAsync();
 
             SearchResultModal searchResult = new()

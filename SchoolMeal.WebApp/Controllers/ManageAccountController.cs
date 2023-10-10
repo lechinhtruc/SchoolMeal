@@ -8,7 +8,7 @@ using SchoolMeal.WebApp.ViewModels;
 namespace SchoolMeal.WebApp.Controllers
 {
 
-    [Authorize(Roles = "Admin")]
+    //[Authorize(Roles = "Admin")]
     public class ManageAccountController : BaseController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -53,13 +53,14 @@ namespace SchoolMeal.WebApp.Controllers
         public async Task<IActionResult> ShowUpdateAccountModal(int Id)
         {
             var account = await _unitOfWork.Account.GetAccountInfomation(Id);
+            var roles = await _unitOfWork.Account.GetAccountRoles(Id);
             EditUserViewModel editUser = new()
             {
                 Id = account.Id,
                 Username = account.Username,
                 PhoneNumber = account.PhoneNumber,
                 ExpiredAt = account.ExpiredAt,
-                Role = account.Role,
+                Roles= roles,
             };
             return PartialView("_EditUserModalPartial", editUser);
         }
@@ -79,7 +80,6 @@ namespace SchoolMeal.WebApp.Controllers
                 account.Username = editUser.Username;
                 account.PhoneNumber = editUser.PhoneNumber;
                 account.ExpiredAt = editUser.ExpiredAt;
-                account.Role = editUser.Role;
                 await _unitOfWork.Account.UpdateAccount(account);
             }
             return RedirectToAction("TaiKhoan");
