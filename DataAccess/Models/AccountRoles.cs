@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace DataAccess.Models
 {
@@ -7,9 +8,12 @@ namespace DataAccess.Models
         [Key]
         public int Id { get; set; }
 
+        public string ActionName { get; set; } = string.Empty;
+
         public int AccountId { get; set; }
 
-        public string ActionName { get; set; } = string.Empty;
+        [JsonIgnore]
+        public AccountModel? Account { get; set; }
 
     }
 }

@@ -34,14 +34,15 @@
                         <button type="button" class="form-select text-start py-0" id="Roles" data-bs-toggle="collapse" data-bs-target="#collapseRoles" aria-expanded="false">Chỉnh sửa quyền hạn</button>
                         <div class="collapse mt-2" id="collapseRoles">
                             <div class="card card-body" style="max-height:150px;overflow-y: auto;">
-                                @for (var i = 0; i < RolesList!.Count; i++)
-                                {
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" asp-for="@RolesList[i].IsChecked" type="checkbox" role="switch" id="switchCheck{@RolesList[i].ActionName}">
-                                        <label class="form-check-label" for="switchCheck{@RolesList[i].ActionName}">@RolesList[i].DisplayString</label>
-                                        <input type="hidden" asp-for="@RolesList[i].ActionName">
-                                    </div>
-                                }
+                                @if (RolesList != null)
+                                    @for (var i = 0; i < RolesList.Count; i++)
+                                    {
+                                        <div class="form-check form-switch">
+                                            <input class="form-check-input" asp-for="@RolesList[i].IsChecked" type="checkbox" role="switch" id="@RolesList[i].ActionName">
+                                            <label class="form-check-label" for="@RolesList[i].ActionName">@RolesList[i].DisplayString</label>
+                                            <input type="hidden" asp-for="@RolesList[i].ActionName">
+                                        </div>
+                                    }
                             </div>
                         </div>
                     </div>

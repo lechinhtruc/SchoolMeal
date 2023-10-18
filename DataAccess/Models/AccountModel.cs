@@ -28,8 +28,8 @@ namespace DataAccess.Models
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime ExpiredAt { get; set; }
 
-        //[Required(ErrorMessage = "Hãy nhập quyền của người dùng!")]
-        //public string Role { get; set; } = string.Empty;
+        public List<AccountRoles>? Roles { get; set; }
+
 
         public static string HashPassword(string password)
         {

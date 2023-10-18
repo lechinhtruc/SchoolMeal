@@ -13,10 +13,10 @@ namespace DataAccess.Repositories
         {
             _db = db;
         }
-        public HistoryLogModel AddLog(HistoryLogModel historyLog)
+        public async Task<HistoryLogModel> AddLog(HistoryLogModel historyLog)
         {
-            _db.Add(historyLog);
-            _db.SaveChanges();
+            await _db.AddAsync(historyLog);
+            await _db.SaveChangesAsync();
             return historyLog;
         }
 

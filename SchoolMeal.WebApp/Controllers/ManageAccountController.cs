@@ -54,7 +54,7 @@ namespace SchoolMeal.WebApp.Controllers
         public async Task<IActionResult> ShowUpdateAccountModal(int Id)
         {
             var account = await _unitOfWork.Account.GetAccountInfomation(Id);
-            var roles = await _unitOfWork.Account.GetAccountRoles(Id);
+            var roles = await _unitOfWork.ManageAccounts.GetAccountRoles(Id);
             List<RoleModel> roleList = new()
             {
                 new RoleModel { DisplayString="Quản lí tài khoản", ActionName = "ManageAccount", IsChecked = roles.Any(x => x.ActionName == "ManageAccount" ) },
@@ -89,7 +89,7 @@ namespace SchoolMeal.WebApp.Controllers
                 account.Username = editUser.Username;
                 account.PhoneNumber = editUser.PhoneNumber;
                 account.ExpiredAt = editUser.ExpiredAt;
-                await _unitOfWork.Account.UpdateAccount(account, rolesList);
+                await _unitOfWork.ManageAccounts.UpdateAccount(account, rolesList);
             }
             return RedirectToAction("TaiKhoan");
         }
@@ -103,11 +103,11 @@ namespace SchoolMeal.WebApp.Controllers
 
         [HttpPost]
         [ActionName("TaoTaiKhoan")]
-        public IActionResult CreateAccount(AccountModel account)
+        public async Task<IActionResult> CreateAccount(AccountModel account)
         {
             if (ModelState.IsValid)
             {
-                var user = _unitOfWork.Account.CreateAccount(account);
+                var user = await _unitOfWork.ManageAccounts.CreateAccount(account);
                 if (user.Id != 0)
                 {
                     TempData["Result"] = "Tạo tài khoản thành công!";

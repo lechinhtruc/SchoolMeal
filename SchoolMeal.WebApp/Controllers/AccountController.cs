@@ -1,12 +1,11 @@
 ﻿using DataAccess.Interfaces;
-using DataAccess.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using SchoolMeal.WebApp.Extensions;
+using SchoolMeal.WebApp.ViewModels;
 using System.Security.Claims;
 
 namespace BaoCaoTienAn.Controllers
 {
-    [Authorize]
     public class AccountController : BaseController
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -20,37 +19,25 @@ namespace BaoCaoTienAn.Controllers
 
         public IActionResult ThongTin()
         {
-            int Id = int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value);
-            string Username = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
-            string PhoneNumber = User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.MobilePhone)!.Value;
-            DateTime CreatedAt = Convert.ToDateTime(User.Claims.FirstOrDefault(claim => claim.Type == "CreatedAt")!.Value);
-            DateTime ExpiredAt = Convert.ToDateTime(User.Claims.FirstOrDefault(claim => claim.Type == "ExpiredAt")!.Value);
-            var infomation = new AccountModel()
-            {
-                Id = Id,
-                Username = Username,
-                PhoneNumber = PhoneNumber,
-                CreatedAt = CreatedAt,
-                ExpiredAt = ExpiredAt,
-            };
             ViewData["Root"] = RootName;
+            var infomation = HttpContext.Session.GetObject<UserViewModel>("User");
             return View(infomation);
         }
 
+        [HttpGet]
         public IActionResult DoiMatKhau()
         {
             ViewData["Root"] = RootName;
             return View();
         }
 
-        [Route("{controller}/DoiMatKhau")]
-        [ActionName("DoiMatKhau")]
         [HttpPost]
+        [ActionName("DoiMatKhau")]
         public async Task<IActionResult> ChangePassword(string OldPassword, string NewPassword)
         {
             if (ModelState.IsValid)
             {
-                int Id = int.Parse(User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.NameIdentifier)!.Value);
+                int Id = HttpContext.Session.GetObject<UserViewModel>("User")!.Id;
                 bool changePassword = await _unitOfWork.Account.ChangePassword(Id, OldPassword, NewPassword);
                 if (changePassword)
                 {

@@ -1,4 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using DataAccess.Models;
+@using System.Security.Claims;
+@using System.Text.Json;
+@{
+    //var actions = Context.Session.Get<List<AccountRoles>>("Actions");
+   // var actions = JsonSerializer.Deserialize<List<AccountRoles>>(User.Claims.First(claim => claim.Type == "Roles").Value);
+}
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -8,9 +17,7 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/cr-1.7.0/r-2.5.0/datatables.min.css" rel="stylesheet">
-   @* <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />*@
+    <link href="https://cdn.datatables.net/v/bs5/dt-1.13.6/cr-1.7.0/r-2.5.0/datatables.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </head>
 <body class="overflow-hidden vh-100 vw-100 bg-body-secondary">
@@ -22,11 +29,6 @@
         <partial name="_NavbarPartial" />
         <div class="d-flex h-100 gap-1 overflow-hidden">
             <div class="d-flex flex-column bg-white h-100 rounded shadow-sm" style="min-width:250px;">
-                @*<div class="d-flex px-2 py-4 justify-content-center w-100 bg-body border-bottom rounded-top">
-                <a class="navbar-brand" asp-controller="Home" asp-action="Index">
-                <img src="/resources/logo1.png" alt="Logo" width="120" height="60" />
-                </a>
-                </div>*@
                 <partial name="_SidebarMenuPartial" />
                 <small class="opacity-50 text-center user-select-none" style="font-size:12px;">© Kidsoft</small>
             </div>
@@ -37,6 +39,7 @@
                         <ol class="breadcrumb m-0">
                             <li class="breadcrumb-item"><a style="color:initial;text-decoration:none;" href="#">@ViewData["Root"]</a></li>
                             <li class="breadcrumb-item active" aria-current="page">@ViewData["Title"]</li>
+                            @* <li class="breadcrumb-item active" aria-current="page">@actions?.Count</li> *@
                         </ol>
                     </nav>
                 </header>
@@ -47,12 +50,11 @@
             </div>
         </div>
 
-    </div> 
+    </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <partial name="_ValidationScriptsPartial" />
     <script src="https://cdn.datatables.net/v/bs5/dt-1.13.6/cr-1.7.0/r-2.5.0/datatables.min.js"></script>
-    @*<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>*@
     <script>
         $(document).ready(function () {
         @if (!string.IsNullOrEmpty(TempData["Result"]?.ToString()))
@@ -64,7 +66,8 @@
         $(document).ready(() => {
             $(".table").DataTable({
                 language: {
-                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json'},
+                    url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/vi.json'
+                },
                 colReorder: true,
                 dom: '<<"row mb-3"<"col"l><"col"f>>rt<"row my-3"<"col"i><"col"p>>>'
             });

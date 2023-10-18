@@ -4,7 +4,6 @@
 
 @{
     ViewData["Title"] = "Đổi mật khẩu";
-    ViewData["Description"] = "Đổi mật khẩu cho tài khoản " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
 }
 <div class="d-flex flex-column w-100 h-100 justify-content-center">
     <div class="d-flex flex-column w-100 overflow-auto align-items-center py-3">

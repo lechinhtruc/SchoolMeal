@@ -18,16 +18,27 @@ builder.Services.AddScoped<IManageAccountsRepositories, ManageAccountsRepositori
 builder.Services.AddScoped<ISearchRepositores, SearchRepositores>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.Cookie.Name = ".SchoolMeal.WebApp.Session";
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
+
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
     builder.Configuration.GetConnectionString("DbConnection"), b => b.MigrationsAssembly("SchoolMeal.WebApp")
 ));
-builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-    .AddCookie((option) =>
-    {
-        option.LoginPath = "/Auth/DangNhap";
-        option.AccessDeniedPath = "/";
-        option.Cookie.Name = "SchoolMeal.Session";
-    });
+
+//builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+//    .AddCookie((option) =>
+//    {
+//        option.LoginPath = "/Auth/DangNhap";
+//        option.AccessDeniedPath = "/";
+//        option.Cookie.Name = "SchoolMeal.Session";
+//    });
 
 var app = builder.Build();
 
@@ -48,6 +59,9 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
+
 
 app.MapControllerRoute(
     name: "default",

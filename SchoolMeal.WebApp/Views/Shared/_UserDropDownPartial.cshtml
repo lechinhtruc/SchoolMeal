@@ -1,11 +1,16 @@
 ﻿@using System.Security.Claims;
+@using SchoolMeal.WebApp.Extensions;
+@using SchoolMeal.WebApp.ViewModels;
+@{
+    var User = Context.Session.GetObject<UserViewModel>("User");
+}
 
 <div class="dropdown">
     <div class="btn border-0 d-flex align-items-center justify-content-center dropdown-toggle gap-2" data-bs-toggle="dropdown" aria-expanded="false">
         <div class="d-flex rounded justify-content-center align-items-center text-light bg-secondary" style="min-width:40px; height:40px;">
             <i class="bi bi-person-fill fs-5"></i>
         </div>
-        <span class="fw-bold">@User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)?.Value</span>
+        <span class="fw-bold">@User?.Username</span>
     </div>
     <div class="dropdown-menu dropdown-menu-end me-2 user-select-none overflow-auto" style="width:250px;max-height:500px;">
         <a class="d-flex align-items-center w-100 px-2 text-black dropdown-item gap-2" style="cursor:pointer;" asp-action="ThongTin" asp-controller="Account">

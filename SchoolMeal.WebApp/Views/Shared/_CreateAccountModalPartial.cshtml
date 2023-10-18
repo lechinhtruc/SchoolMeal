@@ -25,15 +25,15 @@
                         <label for="PhoneNumber">Số điện thoại</label>
                         <span asp-validation-for="PhoneNumber" class="text-danger"></span>
                     </div>
-                    <div class="form-floating w-100">
+                    @* <div class="form-floating w-100">
                         <select class="form-select" id="UserRoles">
                             <option selected value="">Chọn quyền hạn của người dùng</option>
                             <option value="User">Người dùng</option>
                             <option value="Admin">Người quản trị (Admin)</option>
                         </select>
                         <label for="UserRoles">Quyền hạn</label>
-                       @* <span asp-validation-for="Role" class="text-danger"></span>*@
-                    </div>
+                        <span asp-validation-for="Role" class="text-danger"></span>
+                    </div> *@
                     <div class="form-floating w-100">
                         <input type="date" class="form-control" id="ExpiredDate" placeholder="Hạn sử dụng" asp-for="ExpiredAt">
                         <label for="ExpiredDate">Hạn sử dụng</label>

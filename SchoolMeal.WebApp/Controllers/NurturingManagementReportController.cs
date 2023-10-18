@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BaoCaoTienAn.Controllers
 {
-    [Authorize]
     public class NurturingManagementReportController : BaseController
     {
         private readonly IUnitOfWork _unitOfWork;

@@ -1,7 +1,6 @@
 ﻿@using System.Security.Claims;
 @{
     ViewData["Title"] = "Trang chủ";
-    ViewData["Description"] = "Chào mừng " + User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Name)!.Value;
 }
 <div class="d-flex flex-column p-2 gap-2 w-100 h-100 user-select-none">
     <div class="d-flex flex-column gap-1 p-2 overflow-auto">

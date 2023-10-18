@@ -1,8 +1,7 @@
 ﻿using DataAccess.Interfaces;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Claims;
+using SchoolMeal.WebApp.Extensions;
+using SchoolMeal.WebApp.ViewModels;
 
 namespace BaoCaoTienAn.Controllers
 {
@@ -14,9 +13,10 @@ namespace BaoCaoTienAn.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public async Task<IActionResult> DangNhap()
+        public IActionResult DangNhap()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            HttpContext.Session.Remove("User");
             return View();
         }
 
@@ -30,18 +30,28 @@ namespace BaoCaoTienAn.Controllers
                 {
                     if (user.ExpiredAt > DateTime.Now)
                     {
-                        var claims = new List<Claim>
-                    {
-                         new(ClaimTypes.Name, user.Username),
-                         //new(ClaimTypes.Role, user.Role),
-                         new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                         new(ClaimTypes.MobilePhone, user.PhoneNumber),
-                         new("CreatedAt", user.CreatedAt.ToString()),
-                         new("ExpiredAt", user.ExpiredAt.ToString()),
-                    };
-                        var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                        await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+                        //    var claims = new List<Claim>
+                        //{
+                        //     new(ClaimTypes.Name, user.Username),
+                        //     new(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                        //     new(ClaimTypes.MobilePhone, user.PhoneNumber),
+                        //     new("CreatedAt", user.CreatedAt.ToString()),
+                        //     new("ExpiredAt", user.ExpiredAt.ToString()),
+                        //};
+                        //    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                        //    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+                        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+
+                        UserViewModel User = new()
+                        {
+                            Id = user.Id,
+                            Username = user.Username,
+                            PhoneNumber = user.PhoneNumber,
+                            CreatedAt = user.CreatedAt,
+                            ExpiredAt = user.ExpiredAt,
+                            Modules = user.Roles
+                        };
+                        HttpContext.Session.SetObject("User", User);
                         return RedirectToAction("Index", "Home");
                     }
                     else
