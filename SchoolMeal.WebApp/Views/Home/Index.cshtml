@@ -9,16 +9,12 @@
         <div class="d-flex flex-column gap-1">
             <div class="d-flex gap-2 justify-content-between align-items-center">
                 <span class="fw-bold fs-4">Lối tắt</span>
-                @*<button class="btn btn-success">
-                    <i class="bi bi-plus-circle-fill"></i>
-                    Thêm mới
-                </button>*@
             </div>
             <div class="d-flex gap-2 py-2">
-                <a style="width:200px;height:150px;" class="user-select-none bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="TienAn" asp-controller="NurturingManagementReport">
+                @* <a style="width:200px;height:150px;" class="user-select-none bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="TienAn" asp-controller="NurturingManagementReport">
                     <img src="/resources/profits.png" alt="Tiền ăn" width="75">
                     <span class="fw-bold text-black text-center text-truncate w-100">Báo cáo tiền ăn</span>
-                </a>
+                </a> *@
                 <a style="width:200px;height:150px;" class="user-select-none bg-body-secondary link-underline link-underline-opacity-0 d-flex flex-column align-items-center  justify-content-center rounded p-3 overflow-hidden gap-2" style="height:max-content;" asp-action="ThongTin" asp-controller="Account">
                     <img src="/resources/id.png" width="75">
                     <span class="fw-bold text-black text-center text-truncate w-100">Thông tin</span>
@@ -34,7 +30,7 @@
         @* Menu quản trị dành cho admin *@
      @*    @if (User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin")
         { *@
-            <div class="d-flex flex-column gap-1">
+            @* <div class="d-flex flex-column gap-1">
                 <div class="d-flex gap-2 justify-content-between align-items-center">
                     <span class="fw-bold fs-4 me-2">Quản trị</span>
                 </div>
@@ -48,7 +44,7 @@
                         <span class="fw-bold text-black text-center text-truncate w-100">Tài khoản</span>
                     </a>
                 </div>
-            </div>
+            </div> *@
         @* } *@
     </div>
 </div>

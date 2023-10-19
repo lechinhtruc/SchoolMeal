@@ -13,7 +13,7 @@ namespace DataAccess.Models
         public string Username { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Hãy nhập mật khẩu!")]
-        //[MinLength(6, ErrorMessage = "Mật khẩu quá ngắn, độ dài tối thiểu là 6 ký tự!")]
+
         public string Password { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Hãy nhập số điện thoại!")]

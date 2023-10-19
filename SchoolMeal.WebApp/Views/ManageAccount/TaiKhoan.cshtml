@@ -1,7 +1,10 @@
 ﻿@using DataAccess.Models;
+@using SchoolMeal.WebApp.Extensions;
+@using SchoolMeal.WebApp.ViewModels;
+
 @{
     ViewData["Title"] = "Danh sách người dùng";
-    ViewData["Description"] = "Danh sách tất cả người dùng trong hệ thống";
+    var User = Context.Session.GetObject<UserViewModel>("User");
 }
 
 @model IEnumerable<AccountModel>
@@ -14,7 +17,7 @@
                 <i class="bi bi-arrow-clockwise"></i>
                 Làm mới
             </button>
-            <button class="btn btn-success d-flex align-items-center gap-2 create-user-btn">
+            <button class="btn btn-success d-flex align-items-center gap-2 create-user-btn" @(User!.Modules!.Any(action => action.ActionName == "CreateAccount") ? null : "disabled")>
                 <i class="bi bi-person-fill-add"></i>
                 Tạo mới
             </button>
@@ -28,7 +31,6 @@
                 <th scope="col" width="15%">Số điện thoại</th>
                 <th scope="col" width="15%">Ngày tạo</th>
                 <th scope="col" width="15%">Ngày hết hạn</th>
-           @*     <th scope="col" width="10%">Quyền hạn</th>*@
                 <th scope="col" style="width:15%;">Hành động</th>
             </tr>
         </thead>
@@ -41,10 +43,12 @@
                         <td>@user.PhoneNumber</td>
                         <td>@user.CreatedAt.ToString("d")</td>
                         <td>@user.ExpiredAt.ToString("d")</td>
-@*                        <td>@user.Role</td>*@
                         <td class="d-flex gap-1 align-items-center justify-content-center">
-                            <button type="button" class="btn btn-success edit-user-btn" edit-user-id="@user.Id"><i class="bi bi-pencil-square"></i> Sửa</button>
-                            <button type="button" class="btn btn-danger delete-user-btn disabled" delete-user-id=@(user.Id)>
+                            <button type="button" class="btn btn-success edit-user-btn" edit-user-id="@user.Id" @(User!.Modules!.Any(action => action.ActionName == "UpdateAccount") ? null : "disabled")>
+                                <i class="bi bi-pencil-square"></i> 
+                                Sửa
+                            </button>
+                            <button type="button" class="btn btn-danger delete-user-btn" delete-user-id=@user.Id @(User!.Modules!.Any(action => action.ActionName == "DeleteAccount") ? null : "disabled")>
                                 <i class="bi bi-person-x-fill"></i>
                                 Xoá
                             </button>

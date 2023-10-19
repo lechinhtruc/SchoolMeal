@@ -15,7 +15,6 @@ namespace BaoCaoTienAn.Controllers
         }
         public IActionResult DangNhap()
         {
-            //await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             HttpContext.Session.Remove("User");
             return View();
         }
@@ -28,37 +27,17 @@ namespace BaoCaoTienAn.Controllers
                 var user = await _unitOfWork.Auth.Login(Username, Password);
                 if (user.Id != 0)
                 {
-                    if (user.ExpiredAt > DateTime.Now)
+                    UserViewModel User = new()
                     {
-                        //    var claims = new List<Claim>
-                        //{
-                        //     new(ClaimTypes.Name, user.Username),
-                        //     new(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                        //     new(ClaimTypes.MobilePhone, user.PhoneNumber),
-                        //     new("CreatedAt", user.CreatedAt.ToString()),
-                        //     new("ExpiredAt", user.ExpiredAt.ToString()),
-                        //};
-                        //    var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                        //    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-                        //    await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
-
-                        UserViewModel User = new()
-                        {
-                            Id = user.Id,
-                            Username = user.Username,
-                            PhoneNumber = user.PhoneNumber,
-                            CreatedAt = user.CreatedAt,
-                            ExpiredAt = user.ExpiredAt,
-                            Modules = user.Roles
-                        };
-                        HttpContext.Session.SetObject("User", User);
-                        return RedirectToAction("Index", "Home");
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(nameof(user.Username), "Tài khoản đã hết hạn, hãy gia hạn để tiếp tục sử dụng!");
-                    }
-
+                        Id = user.Id,
+                        Username = user.Username,
+                        PhoneNumber = user.PhoneNumber,
+                        CreatedAt = user.CreatedAt,
+                        ExpiredAt = user.ExpiredAt,
+                        Modules = user.Roles
+                    };
+                    HttpContext.Session.SetObject("User", User);
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {

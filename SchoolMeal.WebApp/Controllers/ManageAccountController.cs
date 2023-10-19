@@ -57,11 +57,13 @@ namespace SchoolMeal.WebApp.Controllers
             var roles = await _unitOfWork.ManageAccounts.GetAccountRoles(Id);
             List<RoleModel> roleList = new()
             {
-                new RoleModel { DisplayString="Quản lí tài khoản", ActionName = "ManageAccount", IsChecked = roles.Any(x => x.ActionName == "ManageAccount" ) },
-                new RoleModel { DisplayString="Tra cứu lịch sử hoạt động", ActionName = "HistoryLog", IsChecked = roles.Any(x => x.ActionName == "HistoryLog" ) },
-                new RoleModel { DisplayString="Xem thông tin tài khoản", ActionName = "Infomation", IsChecked = roles.Any(x => x.ActionName == "Infomation" ) },
-                new RoleModel { DisplayString="Đổi mật khẩu", ActionName = "ChangePassword", IsChecked = roles.Any(x => x.ActionName == "ChangePassword" ) },
-                new RoleModel { DisplayString="Báo cáo tiền ăn", ActionName = "MealMoneyReport", IsChecked = roles.Any(x => x.ActionName == "MealMoneyReport" ) },
+                new RoleModel { DisplayString="Xem danh sách người dùng", ActionName = "TaiKhoan", IsChecked = roles.Any(x => x.ActionName == "TaiKhoan" ) },
+                new RoleModel { DisplayString="Tạo người dùng", ActionName = "CreateAccount", IsChecked = roles.Any(x => x.ActionName == "CreateAccount" ) },
+                new RoleModel { DisplayString="Sửa người dùng", ActionName = "UpdateAccount", IsChecked = roles.Any(x => x.ActionName == "UpdateAccount" ) },
+                new RoleModel { DisplayString="Xoá người dùng", ActionName = "DeleteAccount", IsChecked = roles.Any(x => x.ActionName == "DeleteAccount" ) },
+                new RoleModel { DisplayString="Xem lịch sử hoạt động", ActionName = "LichSuHoatDong", IsChecked = roles.Any(x => x.ActionName == "LichSuHoatDong" ) },
+                new RoleModel { DisplayString="Xoá lịch sử hoạt động", ActionName = "XoaLichSuHoatDong", IsChecked = roles.Any(x => x.ActionName == "XoaLichSuHoatDong" ) },
+                new RoleModel { DisplayString="Báo cáo tiền ăn", ActionName = "TienAn", IsChecked = roles.Any(x => x.ActionName == "TienAn" ) },
             };
             EditUserViewModel editUser = new()
             {

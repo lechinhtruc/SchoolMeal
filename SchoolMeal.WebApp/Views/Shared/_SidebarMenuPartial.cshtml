@@ -1,36 +1,39 @@
 ﻿@using System.Security.Claims;
+@using SchoolMeal.WebApp.Extensions;
+@using SchoolMeal.WebApp.ViewModels;
+@{
+    var User = Context.Session.GetObject<UserViewModel>("User");
+}
 <div class="d-flex flex-column p-2 mt-1 h-100 overflow-auto">
-    @*@if (User.Claims.FirstOrDefault(claim => claim.Type == ClaimTypes.Role)?.Value == "Admin")
-    {*@
+    @if (User.Modules!.Any(action => action.ActionName == "LichSuHoatDong" || action.ActionName == "TaiKhoan"))
+    {
         <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseManageAccount">
             <i class="bi bi-person-lines-fill me-1"></i>
             <span class="fw-bold w-100 text-start">Quản lí</span>
             <i class="bi bi-caret-down-fill" style="font-size:10px;"></i>
         </span>
-
         <div class="collapse @(ViewContext.RouteData.Values["controller"]!.ToString() == "ManageAccount" ? "show" : "") ms-4" id="collapseManageAccount"
              style="font-size:13px;">
-            <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "LichSuHoatDong" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
-               asp-controller="ManageAccount"
-               asp-action="LichSuHoatDong">
-                <i class="bi bi-dot"></i>
-                <span class="fw-bold">Lịch sử hoạt động</span>
-            </a>
-            <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TaiKhoan" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
-               asp-controller="ManageAccount"
-               asp-action="TaiKhoan">
-                <i class="bi bi-dot"></i>
-                <span class="fw-bold">Tài khoản</span>
-            </a>
-            @*<a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TaoTaiKhoan" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
-               asp-controller="ManageAccount"
-               asp-action="TaoTaiKhoan">
-                <i class="bi bi-dot"></i>
-                <span class="fw-bold">Tạo tài khoản mới</span>
-            </a>*@
+            @if (User.Modules!.Any(action => action.ActionName == "LichSuHoatDong"))
+            {
+                <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "LichSuHoatDong" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                   asp-controller="ManageAccount"
+                   asp-action="LichSuHoatDong">
+                    <i class="bi bi-dot"></i>
+                    <span class="fw-bold">Lịch sử hoạt động</span>
+                </a>
+            }
+            @if (User.Modules!.Any(action => action.ActionName == "TaiKhoan"))
+            {
+                <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TaiKhoan" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                   asp-controller="ManageAccount"
+                   asp-action="TaiKhoan">
+                    <i class="bi bi-dot"></i>
+                    <span class="fw-bold">Tài khoản</span>
+                </a>
+            }
         </div>
-    @*}*@
-
+    }
 
 
     <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#collapseAccount">
@@ -61,19 +64,27 @@
         </a>
     </div>
 
-    <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#NurturingManagementReport">
-        <i class="bi bi-currency-dollar me-1"></i>
-        <span class="fw-bold w-100 text-start">Báo cáo</span>
-        <i class="bi bi-caret-down-fill" style="font-size:10px;"></i>
-    </span>
 
-    <div class="collapse @(ViewContext.RouteData.Values["controller"]!.ToString() == "NurturingManagementReport" ? "show" : "") ms-4" id="NurturingManagementReport">
-        <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TienAn" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
-           asp-controller="NurturingManagementReport"
-           asp-action="TienAn">
-            <i class="bi bi-dot"></i>
-            <span class="fw-bold">Tiền ăn</span>
-        </a>
-    </div>
+    @if (User.Modules!.Any(action => action.ActionName == "TienAn"))
+    {
+        <span class="btn d-flex px-2 gap-2 align-items-center w-100 border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#NurturingManagementReport">
+            <i class="bi bi-currency-dollar me-1"></i>
+            <span class="fw-bold w-100 text-start">Báo cáo</span>
+            <i class="bi bi-caret-down-fill" style="font-size:10px;"></i>
+        </span>
+
+        <div class="collapse @(ViewContext.RouteData.Values["controller"]!.ToString() == "NurturingManagementReport" ? "show" : "") ms-4" id="NurturingManagementReport">
+            @if (User.Modules!.Any(action => action.ActionName == "TienAn"))
+            {
+                <a class="btn shadow-none @(ViewContext.RouteData.Values["action"]!.ToString() == "TienAn" ? "bg-danger text-light":"") d-flex px-2 py-1 gap-1 align-items-center w-100 border-0"
+                   asp-controller="NurturingManagementReport"
+                   asp-action="TienAn">
+                    <i class="bi bi-dot"></i>
+                    <span class="fw-bold">Tiền ăn</span>
+                </a>
+            }
+        </div>
+    }
+
 </div>
 

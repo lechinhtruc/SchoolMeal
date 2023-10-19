@@ -18,7 +18,6 @@ namespace DataAccess.Repositories
             var accounts = await _db.Tbl_Account.Where(account =>
             account.Username.Contains(searchString) ||
             account.PhoneNumber.Contains(searchString) ||
-            //account.Role.Contains(searchString) ||
             account.CreatedAt.ToString().Contains(searchString) ||
             account.ExpiredAt.ToString().Contains(searchString)
             ).ToListAsync();

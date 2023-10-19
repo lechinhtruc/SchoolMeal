@@ -1,7 +1,10 @@
 ﻿@using DataAccess.Models;
+@using SchoolMeal.WebApp.Extensions;
+@using SchoolMeal.WebApp.ViewModels;
 @{
     ViewData["Title"] = "Lịch sử hoạt động";
     ViewData["Description"] = "Tra cứu lịch sử hoạt động của tài khoản";
+    var User = Context.Session.GetObject<UserViewModel>("User");
 }
 
 @model IEnumerable<HistoryLogModel>
@@ -14,7 +17,7 @@
                 <i class="bi bi-arrow-clockwise"></i>
                 Làm mới
             </button>
-            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#clearLogConfirmModal">
+            <button class="btn btn-danger" @(User!.Modules!.Any(action => action.ActionName == "XoaLichSuHoatDong") ? null : "disabled") data-bs-toggle="modal" data-bs-target="#clearLogConfirmModal">
                 <i class="bi bi-trash-fill"></i>
                 Xoá Log
             </button>
@@ -45,23 +48,27 @@
                 }
         </tbody>
     </table>
-    <div class="modal fade" id="clearLogConfirmModal" data-bs-backdrop="static" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <form asp-action="XoaLichSuHoatDong" asp-controller="ManageAccount" method="post">
-                    <input hidden id="userId" name="Id" />
-                    <div class="modal-header">
-                        <h5 class="modal-title">Xoá lịch sử hoạt động</h5>
-                    </div>
-                    <div class="modal-body">
-                        <p>Bạn có chắc chắn muốn xoá sạch lịch sử hoạt động?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
-                        <button type="submit" class="btn btn-danger">Xoá</button>
-                    </div>
-                </form>
+    @if (
+    User.Modules!.Any(action => action.ActionName == "XoaLichSuHoatDong"))
+    {
+        <div class="modal fade" id="clearLogConfirmModal" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <form asp-action="XoaLichSuHoatDong" asp-controller="ManageAccount" method="post">
+                        <input hidden id="userId" name="Id" />
+                        <div class="modal-header">
+                            <h5 class="modal-title">Xoá lịch sử hoạt động</h5>
+                        </div>
+                        <div class="modal-body">
+                            <p>Bạn có chắc chắn muốn xoá sạch lịch sử hoạt động?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                            <button type="submit" class="btn btn-danger">Xoá</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    }
 </div>
